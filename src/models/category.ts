@@ -1,19 +1,19 @@
 import { database } from '../database'
 import { DataTypes, Model, Optional } from 'sequelize'
 
-interface GenreAttributes {
+interface CategoryAttributes {
   id: number
   name: string
   position: number
 }
 
-interface GenreCreationAttributes
-  extends Optional<GenreAttributes, 'id'> {}
+interface CategoryCreationAttributes
+  extends Optional<CategoryAttributes, 'id'> {}
 
-interface GenreInstance
-  extends Model<GenreAttributes, GenreCreationAttributes>, GenreAttributes {}
+interface CategoryInstance
+  extends Model<CategoryAttributes, CategoryCreationAttributes>, CategoryAttributes {}
 
-const Genre = database.define<GenreInstance, GenreAttributes>('genres', {
+const Category = database.define<CategoryInstance, CategoryAttributes>('categories', {
   id: {
     allowNull: false,
     autoIncrement: true,
@@ -31,4 +31,4 @@ const Genre = database.define<GenreInstance, GenreAttributes>('genres', {
   }
 })
 
-export { Genre }
+export { Category }

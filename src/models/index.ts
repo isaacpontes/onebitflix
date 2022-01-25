@@ -1,7 +1,11 @@
-import { Title } from './title'
-import { Genre } from './genre'
+import { Category } from './category'
+import { Course } from './course'
+
+Category.hasMany(Course)
+
+Course.belongsTo(Category)
 
 export {
-  Title,
-  Genre
+  Course,
+  Category
 }

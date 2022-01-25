@@ -1,16 +1,16 @@
 import { ResourceWithOptions } from "adminjs";
-import { Genre, Title } from "../../models";
-import { genreResourceOptions } from "./genre";
-import { titleResourceOptions } from "./title";
+import { Category, Course } from "../../models";
+import { categoryResourceOptions } from "./category";
+import { courseResourceOptions } from "./course";
 
 const adminJsResources: ResourceWithOptions[] = [
   {
-    resource: Genre,
-    options: genreResourceOptions
+    resource: Course,
+    options: courseResourceOptions
   },
   {
-    resource: Title,
-    options: titleResourceOptions
+    resource: Category,
+    options: categoryResourceOptions
   },
 ]
 
