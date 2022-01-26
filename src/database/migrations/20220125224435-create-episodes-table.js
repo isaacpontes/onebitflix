@@ -22,11 +22,9 @@ module.exports = {
         type: Sequelize.DataTypes.INTEGER
       },
       video_url: {
-        allowNull: false,
         type: Sequelize.DataTypes.STRING
       },
       seconds_long: {
-        allowNull: false,
         type: Sequelize.DataTypes.INTEGER
       },
       course_id: {

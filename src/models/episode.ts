@@ -12,7 +12,7 @@ interface EpisodeAttributes {
 }
 
 interface EpisodeCreationAttributes
-  extends Optional<EpisodeAttributes, 'id' > {}
+  extends Optional<EpisodeAttributes, 'id' | 'video_url' | 'seconds_long' > {}
 
 interface EpisodeInstance
   extends Model<EpisodeAttributes, EpisodeCreationAttributes>, EpisodeAttributes {}
@@ -38,11 +38,9 @@ const Episode = database.define<EpisodeInstance, EpisodeAttributes>('episodes', 
     type: DataTypes.STRING
   },
   video_url: {
-    allowNull: false,
     type: DataTypes.STRING
   },
   seconds_long: {
-    allowNull: false,
     type: DataTypes.INTEGER
   },
   course_id: {
