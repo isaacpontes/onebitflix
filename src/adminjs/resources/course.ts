@@ -1,7 +1,7 @@
 import { ResourceOptions } from "adminjs";
 
 const courseResourceOptions: ResourceOptions = {
-  navigation: 'Catalogue',
+  navigation: 'Catálogo',
   editProperties: ['name', 'synopsis', 'thumbnail', 'category_id'],
   filterProperties: ['name', 'synopsis', 'category_id', 'created_at', 'updated_at'],
   listProperties: ['id', 'name', 'category_id'],
