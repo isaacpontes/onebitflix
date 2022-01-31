@@ -53,6 +53,7 @@ const locale: Locale = {
       course_id: 'Curso',
       upload_video: 'Enviar um vídeo',
       thumbnail_url: 'URL da Capa',
+      upload_thumbnail: 'Upload da Capa',
       category_id: 'Categoria',
       position: 'Posição na Tela',
       created_at: 'Criado em',
