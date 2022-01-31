@@ -14,7 +14,19 @@ const adminJs = new AdminJs({
   resources: adminJsResources,
   rootPath: '/admin',
   dashboard: {
-    component: AdminJs.bundle('../adminjs/components/Dashboard')
+    component: AdminJs.bundle('../adminjs/components/Dashboard'),
+    handler: async (req, res, context) => {
+      const resources = context._admin.resources.map(resource => {
+        const id = resource.id()
+        const translated = context._admin.translateLabel(id)
+
+        return { id, translated }
+      })
+
+      res.json({
+        resources
+      })
+    },
   },
   locale: locale,
   branding: {
@@ -48,7 +60,6 @@ const adminJsRouter = AdminJsExpress.buildAuthenticatedRouter(adminJs, {
       const matched = await bcrypt.compare(password, user.password)
 
       if (matched) {
-        console.log(user, email, password)
         return user
       }
     }
