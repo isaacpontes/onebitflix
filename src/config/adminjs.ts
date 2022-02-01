@@ -3,7 +3,7 @@ import AdminJsExpress from '@adminjs/express'
 import AdminJsSequelize from '@adminjs/sequelize'
 import { database } from '../database'
 import { adminJsResources } from '../adminjs/resources'
-import { User } from '../models'
+import { Category, Course, Episode, User } from '../models'
 import bcrypt from 'bcrypt'
 import { locale } from '../adminjs/locale'
 
@@ -16,15 +16,16 @@ const adminJs = new AdminJs({
   dashboard: {
     component: AdminJs.bundle('../adminjs/components/Dashboard'),
     handler: async (req, res, context) => {
-      const resources = context._admin.resources.map(resource => {
-        const id = resource.id()
-        const translated = context._admin.translateLabel(id)
-
-        return { id, translated }
-      })
+      const courses = await Course.count()
+      const episodes = await Episode.count()
+      const category = await Category.count()
+      const standardUsers = await User.count({ where: { role: 'user' } })
 
       res.json({
-        resources
+        'Cursos': courses,
+        'Episódios': episodes,
+        'Categorias': category,
+        'Usuários Padrão': standardUsers
       })
     },
   },

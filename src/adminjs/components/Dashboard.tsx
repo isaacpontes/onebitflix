@@ -1,14 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { H1, H2, Table, TableHead, TableBody, TableRow, TableCell } from '@adminjs/design-system'
-import { ApiClient } from 'adminjs'
-
-interface ResourceResponse {
-  id: string
-  translated: string
-}
+import { ApiClient, useCurrentAdmin } from 'adminjs'
 
 function Dashboard() {
-  const [resources, setResources] = useState<ResourceResponse[]>()
+  const [currentAdmin] = useCurrentAdmin()
+  const [resources, setResources] = useState<{ [key: string]: number }>()
   const api = new ApiClient()
 
   useEffect(() => {
@@ -17,14 +13,14 @@ function Dashboard() {
 
   async function fetchDashboardData() {
     const res = await api.getDashboard()
-    const fetchedResources = res.data.resources
+    console.log(res.data)
 
-    setResources(fetchedResources)
+    setResources(res.data)
   }
 
   return (
     <section style={{ padding: '1.5rem' }}>
-      <H1>Seja bem-vindo!</H1>
+      <H1>Seja bem-vindo, {currentAdmin?.first_name}!</H1>
 
       <section style={{ backgroundColor: '#FFF', padding: '1.5rem' }}>
         <H2>Resumo</H2>
@@ -32,14 +28,21 @@ function Dashboard() {
           <TableHead>
             <TableRow style={{ backgroundColor: '#FF0043' }}>
               <TableCell style={{ color: "#FFF" }}>Recurso</TableCell>
+              <TableCell style={{ color: "#FFF" }}>Registros</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
-            {resources?.map(resource => (
-              <TableRow key={resource.id}>
-                <TableCell>{resource.translated}</TableCell>
-              </TableRow>
-            ))}
+            {
+              resources ?
+                Object.entries(resources).map(([resource, count]) => (
+                  <TableRow key={resource}>
+                    <TableCell>{resource}</TableCell>
+                    <TableCell>{count}</TableCell>
+                  </TableRow>
+                ))
+                :
+                <></>
+            }
           </TableBody>
         </Table>
       </section>
