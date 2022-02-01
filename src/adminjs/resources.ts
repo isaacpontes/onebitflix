@@ -1,9 +1,9 @@
 import { ResourceWithOptions } from 'adminjs'
-import { Category, Course, Episode, User } from '../../models'
-import { categoryResourceOptions } from './category'
-import { courseResourceFeatures, courseResourceOptions } from './course'
-import { episodeResourceFeatures, episodeResourceOptions } from './episode'
-import { userResourceOptions } from './user'
+import { Category, Course, Episode, User } from '../models'
+import { categoryResourceOptions } from './resources/category'
+import { courseResourceFeatures, courseResourceOptions } from './resources/course'
+import { episodeResourceFeatures, episodeResourceOptions } from './resources/episode'
+import { userResourceOptions } from './resources/user'
 
 const adminJsResources: ResourceWithOptions[] = [
   {
