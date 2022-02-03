@@ -1,9 +1,8 @@
-import express, { Request, Response } from 'express'
+import express from 'express'
+import { categoriesController } from './controllers/categories-controller'
 
 const router = express.Router()
 
-router.get('/hello', (req: Request, res: Response) => {
-  return res.json({ message: 'Hello, World!' })
-})
+router.get('/categories', categoriesController.index)
 
 export { router }
