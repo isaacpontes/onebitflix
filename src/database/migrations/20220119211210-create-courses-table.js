@@ -7,33 +7,37 @@ module.exports = {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
+        type: Sequelize.DataTypes.INTEGER
       },
       name: {
         allowNull: false,
-        type: Sequelize.STRING
+        type: Sequelize.DataTypes.STRING
       },
       synopsis: {
         allowNull: false,
-        type: Sequelize.TEXT
+        type: Sequelize.DataTypes.TEXT
       },
       thumbnail_url: {
-        type: Sequelize.STRING
+        type: Sequelize.DataTypes.STRING
+      },
+      featured: {
+        defaultValue: false,
+        type: Sequelize.DataTypes.BOOLEAN
       },
       category_id: {
         allowNull: false,
-        type: Sequelize.INTEGER,
+        type: Sequelize.DataTypes.INTEGER,
         references: { model: 'categories', key: 'id' },
         onUpdate: 'CASCADE',
         onDelete: 'RESTRICT'
       },
       created_at: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DataTypes.DATE
       },
       updated_at: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DataTypes.DATE
       }
     })
   },

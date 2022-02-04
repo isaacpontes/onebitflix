@@ -6,11 +6,12 @@ interface CourseAttributes {
   name: string
   synopsis: string
   thumbnail_url: string
+  featured: boolean
   category_id: number
 }
 
 interface CourseCreationAttributes
-  extends Optional<CourseAttributes, 'id' | 'thumbnail_url' > {}
+  extends Optional<CourseAttributes, 'id' | 'thumbnail_url' | 'featured' > {}
 
 interface CourseInstance
   extends Model<CourseAttributes, CourseCreationAttributes>, CourseAttributes {}
@@ -32,6 +33,10 @@ const Course = database.define<CourseInstance, CourseAttributes>('courses', {
   },
   thumbnail_url: {
     type: DataTypes.STRING
+  },
+  featured: {
+    defaultValue: false,
+    type: DataTypes.BOOLEAN
   },
   category_id: {
     allowNull: false,

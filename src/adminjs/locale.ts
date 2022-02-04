@@ -47,6 +47,7 @@ const locale: Locale = {
       role: 'Perfil',
       name: 'Nome',
       synopsis: 'Sinopse',
+      featured: 'Em Destaque',
       order: 'Ordem',
       video_url: 'URL do Vídeo',
       seconds_long: 'Segundos de Duração',

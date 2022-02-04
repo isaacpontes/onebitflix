@@ -4,10 +4,10 @@ import path from 'path'
 
 const courseResourceOptions: ResourceOptions = {
   navigation: 'Catálogo',
-  editProperties: ['name', 'synopsis', 'upload_thumbnail', 'category_id'],
-  filterProperties: ['name', 'synopsis', 'category_id', 'created_at', 'updated_at'],
-  listProperties: ['id', 'name', 'category_id'],
-  showProperties: ['id', 'name', 'synopsis', 'thumbnail_url', 'category_id', 'created_at', 'updated_at']
+  editProperties: ['name', 'synopsis', 'upload_thumbnail', 'featured', 'category_id'],
+  filterProperties: ['name', 'synopsis', 'featured', 'category_id', 'created_at', 'updated_at'],
+  listProperties: ['id', 'name', 'featured', 'category_id'],
+  showProperties: ['id', 'name', 'synopsis', 'featured', 'thumbnail_url', 'category_id', 'created_at', 'updated_at']
 }
 
 const courseResourceFeatures: FeatureType[] = [
