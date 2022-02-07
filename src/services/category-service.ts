@@ -4,20 +4,18 @@ const categoryService = {
   findAllPaginated: async (page: number, perPage: number) => {
     const offset = (page - 1) * perPage
 
-    const categories = await Category.findAll({
+    const { count, rows } = await Category.findAndCountAll({
       attributes: ['id', 'name', 'position'],
       order: [['position', 'ASC']],
       limit: perPage,
       offset
     })
 
-    const total = await Category.count()
-
     return {
-      categories,
+      categories: rows,
       page,
       perPage,
-      total
+      total: count
     }
   },
 
