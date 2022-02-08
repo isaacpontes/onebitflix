@@ -68,4 +68,4 @@ const User = database.define<UserInstance, UserAttributes>('users', {
   }
 })
 
-export { User }
+export { User, UserCreationAttributes }
