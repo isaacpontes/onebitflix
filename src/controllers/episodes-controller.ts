@@ -5,9 +5,12 @@ import path from 'path'
 const episodesController = {
   // GET /episodes/stream
   stream: async (req: Request, res: Response) => {
-    const { video_url } = req.body
+    const { video_url } = req.query
 
     try {
+      if (typeof video_url !== 'string') {
+        throw new Error('video_url must be of type \'string\'');
+      }
 
       const filePath = path.join(__dirname, '../../uploads', video_url)
       const fileStat = fs.statSync(filePath)
