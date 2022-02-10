@@ -1,6 +1,14 @@
 import { Profile } from "../models"
 
 const profileService = {
+  findByUserId: async (user_id: number) => {
+    const userProfiles = await Profile.findAll({
+      attributes: ['id', 'name', 'avatar_url'],
+      where: { user_id }
+    })
+    return userProfiles
+  },
+
   create: async (name: string, avatar_url: string, user_id: number) => {
     const profilesCount = await Profile.count({ where: { user_id } })
 

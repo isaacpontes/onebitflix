@@ -20,6 +20,7 @@ router.get('/courses/:id', ensureAuth, coursesController.show)
 
 router.get('/episodes/stream', ensureAuthViaQuery, episodesController.stream)
 
+router.get('/profiles', ensureAuth, profilesController.index)
 router.post('/profiles', ensureAuth, profilesController.save)
 
 export { router }
