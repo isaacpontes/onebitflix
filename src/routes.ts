@@ -22,5 +22,7 @@ router.get('/episodes/stream', ensureAuthViaQuery, episodesController.stream)
 
 router.get('/profiles', ensureAuth, profilesController.index)
 router.post('/profiles', ensureAuth, profilesController.save)
+router.put('/profiles/:id', ensureAuth, profilesController.update)
+router.delete('/profiles/:id', ensureAuth, profilesController.delete)
 
 export { router }

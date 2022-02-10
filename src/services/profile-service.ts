@@ -4,7 +4,8 @@ const profileService = {
   findByUserId: async (user_id: number) => {
     const userProfiles = await Profile.findAll({
       attributes: ['id', 'name', 'avatar_url'],
-      where: { user_id }
+      where: { user_id },
+      order: [['created_at', 'ASC']]
     })
     return userProfiles
   },
@@ -23,6 +24,28 @@ const profileService = {
     })
 
     return profile
+  },
+
+  updateOne: async (id: string, name: string, avatar_url: string) => {
+    const [affectedRows, updatedProfiles] = await Profile.update({
+      name,
+      avatar_url
+    }, {
+      where: { id },
+      returning: true
+    })
+
+    if (affectedRows === 0) {
+      throw new Error('Perfil não encontrado')
+    }
+
+    return updatedProfiles[0]
+  },
+
+  deleteOne: async (id: string) => {
+    await Profile.destroy({
+      where: { id }
+    })
   }
 }
 

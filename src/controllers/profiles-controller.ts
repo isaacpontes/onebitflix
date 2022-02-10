@@ -1,4 +1,4 @@
-import { Response } from "express";
+import { Request, Response } from "express";
 import { RequestWithUser } from "../middlewares/auth";
 import { profileService } from "../services/profile-service";
 
@@ -25,6 +25,35 @@ const profilesController = {
     try {
       const profile = await profileService.create(name, avatar_url, user_id)
       return res.status(201).json(profile)
+    } catch (err) {
+      if (err instanceof Error) {
+        return res.status(400).json({ message: err.message })
+      }
+    }
+  },
+
+  // PUT /profiles/:id
+  update: async (req: Request, res: Response) => {
+    const { id } = req.params
+    const { name, avatar_url } = req.body
+
+    try {
+      const profile = await profileService.updateOne(id, name, avatar_url)
+      return res.json(profile)
+    } catch (err) {
+      if (err instanceof Error) {
+        return res.status(400).json({ message: err.message })
+      }
+    }
+  },
+
+  // DELETE /profiles/:id
+  delete: async (req: Request, res: Response) => {
+    const { id } = req.params
+
+    try {
+      await profileService.deleteOne(id)
+      return res.status(204).send()
     } catch (err) {
       if (err instanceof Error) {
         return res.status(400).json({ message: err.message })
