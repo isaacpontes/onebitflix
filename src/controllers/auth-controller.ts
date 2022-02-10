@@ -52,7 +52,13 @@ const authController = {
           return res.status(401).json({ message: 'Senha incorreta' })
         }
 
-        const token = jwtService.signPayload({ email }, '7d')
+        const payload = {
+          id: user.id,
+          first_name: user.first_name,
+          email: user.email
+        }
+
+        const token = jwtService.signPayload(payload, '7d')
 
         return res.json({ authenticated: true, token })
       })

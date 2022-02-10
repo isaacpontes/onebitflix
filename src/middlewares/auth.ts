@@ -52,4 +52,4 @@ function ensureAuthViaQuery(req: RequestWithUser, res: Response, next: NextFunct
   })
 }
 
-export { ensureAuth, ensureAuthViaQuery }
+export { ensureAuth, ensureAuthViaQuery, RequestWithUser }
