@@ -3,6 +3,7 @@ import { authController } from './controllers/auth-controller'
 import { categoriesController } from './controllers/categories-controller'
 import { coursesController } from './controllers/courses-controller'
 import { episodesController } from './controllers/episodes-controller'
+import { favoritesController } from './controllers/favorites-controller'
 import { profilesController } from './controllers/profiles-controller'
 import { ensureAuth, ensureAuthViaQuery } from './middlewares/auth'
 
@@ -24,5 +25,9 @@ router.get('/profiles', ensureAuth, profilesController.index)
 router.post('/profiles', ensureAuth, profilesController.save)
 router.put('/profiles/:id', ensureAuth, profilesController.update)
 router.delete('/profiles/:id', ensureAuth, profilesController.delete)
+
+router.get('/profiles/:profile_id/favorites', favoritesController.index)
+router.post('/profiles/:profile_id/favorites/:course_id', favoritesController.save)
+router.delete('/profiles/:profile_id/favorites/:course_id', favoritesController.delete)
 
 export { router }

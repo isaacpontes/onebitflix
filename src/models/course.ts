@@ -47,4 +47,4 @@ const Course = database.define<CourseInstance, CourseAttributes>('courses', {
   }
 })
 
-export { Course }
+export { Course, CourseInstance }
