@@ -16,7 +16,7 @@ const favoriteService = {
     }
   },
 
-  findOne:async (profile_id: number, course_id: number) => {
+  findOne: async (profile_id: number, course_id: number) => {
     const favorite = await Favorite.findOne({
       where: {
         profile_id,

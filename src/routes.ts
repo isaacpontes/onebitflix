@@ -26,8 +26,8 @@ router.post('/profiles', ensureAuth, profilesController.save)
 router.put('/profiles/:id', ensureAuth, profilesController.update)
 router.delete('/profiles/:id', ensureAuth, profilesController.delete)
 
-router.get('/profiles/:profile_id/favorites', favoritesController.index)
-router.post('/profiles/:profile_id/favorites/:course_id', favoritesController.save)
-router.delete('/profiles/:profile_id/favorites/:course_id', favoritesController.delete)
+router.get('/profiles/:profile_id/favorites', ensureAuth, favoritesController.index)
+router.post('/profiles/:profile_id/favorites/:course_id', ensureAuth, favoritesController.save)
+router.delete('/profiles/:profile_id/favorites/:course_id', ensureAuth, favoritesController.delete)
 
 export { router }

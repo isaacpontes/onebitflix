@@ -1,6 +1,5 @@
 import { Request, Response } from 'express'
 import { favoriteService } from '../services/favorite-service'
-import { profileService } from '../services/profile-service'
 
 const favoritesController = {
   //GET /profiles/:profile_id/favorites
