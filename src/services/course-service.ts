@@ -1,4 +1,4 @@
-import { Op } from 'sequelize'
+import { Op, Sequelize } from 'sequelize'
 import { Course } from '../models'
 
 const courseService = {
@@ -26,6 +26,32 @@ const courseService = {
     const randomFeaturedCourses = featuredCourses.sort(() => 0.5 - Math.random())
 
     return randomFeaturedCourses.slice(0, 4)
+  },
+
+  getTopTenByLikes: async () => {
+    const results = await Course.sequelize?.query(
+      `SELECT
+        courses.id,
+        courses.name,
+        courses.synopsis,
+        courses.thumbnail_url,
+        COUNT(profiles.id) AS likes
+      FROM courses
+        LEFT OUTER JOIN likes
+          ON courses.id = likes.course_id
+          INNER JOIN profiles
+            ON profiles.id = likes.profile_id
+      GROUP BY courses.id
+      ORDER BY likes DESC
+      LIMIT 10;`
+    )
+
+    if (results) {
+      const [topTen, metada] = results
+      return topTen
+    } else {
+      return null
+    }
   },
 
   findByName: async (name: string, page: number, perPage: number) => {
