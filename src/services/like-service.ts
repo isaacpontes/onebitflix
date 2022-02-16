@@ -30,6 +30,17 @@ const likeService = {
         course_id
       }
     })
+  },
+
+  isLiked: async (course_id: string | number, profile_id: string | number) => {
+    const like = await Like.findOne({
+      where: {
+        course_id,
+        profile_id
+      }
+    })
+
+    return like ? true : false
   }
 }
 

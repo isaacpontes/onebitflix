@@ -1,15 +1,23 @@
 import { Request, Response } from 'express'
 import { getPaginationParams } from '../helpers/get-pagination-params'
 import { courseService } from '../services/course-service'
+import { likeService } from '../services/like-service'
 
 const coursesController = {
   // GET /courses/:id
   show: async (req: Request, res: Response) => {
     const { id } = req.params
+    const { profile_id } = req.body
 
     try {
       const course = await courseService.findByIdWithEpisodes(id)
-      return res.json(course)
+
+      if (course) {
+        const liked = await likeService.isLiked(course.id, profile_id)
+        return res.json({ ...course.get(), liked })
+      } else {
+        return res.status(404).json({ message: 'Curso não encontrado' })
+      }
     } catch (err) {
       if (err instanceof Error) {
         return res.status(400).json({ message: err.message })
