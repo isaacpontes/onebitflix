@@ -22,12 +22,6 @@ const favoritesController = {
     const course_id = Number(req.params.course_id)
 
     try {
-      const favoriteAlreadyExists = await favoriteService.findOne(profile_id, course_id)
-
-      if (favoriteAlreadyExists) {
-        throw new Error('Curso já existente na lista')
-      }
-
       const favorite = await favoriteService.create(profile_id, course_id)
 
       return res.status(201).json(favorite)
@@ -38,6 +32,7 @@ const favoritesController = {
     }
   },
 
+  // DELETE /profiles/:profile_id/favorites/:course_id
   delete: async (req: Request, res: Response) => {
     const { profile_id, course_id } = req.params
 

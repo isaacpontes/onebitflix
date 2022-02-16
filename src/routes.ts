@@ -4,6 +4,7 @@ import { categoriesController } from './controllers/categories-controller'
 import { coursesController } from './controllers/courses-controller'
 import { episodesController } from './controllers/episodes-controller'
 import { favoritesController } from './controllers/favorites-controller'
+import { likesController } from './controllers/likes-controller'
 import { profilesController } from './controllers/profiles-controller'
 import { ensureAuth, ensureAuthViaQuery } from './middlewares/auth'
 
@@ -29,5 +30,9 @@ router.delete('/profiles/:id', ensureAuth, profilesController.delete)
 router.get('/profiles/:profile_id/favorites', ensureAuth, favoritesController.index)
 router.post('/profiles/:profile_id/favorites/:course_id', ensureAuth, favoritesController.save)
 router.delete('/profiles/:profile_id/favorites/:course_id', ensureAuth, favoritesController.delete)
+
+router.post('/profiles/:profile_id/likes/:course_id', ensureAuth, likesController.save)
+router.delete('/profiles/:profile_id/likes/:course_id', ensureAuth, likesController.delete)
+
 
 export { router }

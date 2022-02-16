@@ -16,18 +16,18 @@ const favoriteService = {
     }
   },
 
-  findOne: async (profile_id: number, course_id: number) => {
-    const favorite = await Favorite.findOne({
+  create: async (profile_id: number, course_id: number) => {
+    const favoriteAlreadyExists = await Favorite.findOne({
       where: {
         profile_id,
         course_id
       }
     })
 
-    return favorite
-  },
+    if (favoriteAlreadyExists) {
+      throw new Error('Curso já existente na lista')
+    }
 
-  create: async (profile_id: number, course_id: number) => {
     const favorite = await Favorite.create({
       profile_id,
       course_id

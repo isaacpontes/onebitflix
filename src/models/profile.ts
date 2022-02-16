@@ -36,4 +36,4 @@ const Profile = database.define<ProfileInstance, ProfileAttributes>('profiles', 
   }
 })
 
-export { Profile }
+export { Profile, ProfileInstance }
