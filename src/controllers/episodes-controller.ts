@@ -1,6 +1,7 @@
 import { Request, Response } from 'express'
 import fs from 'fs'
 import path from 'path'
+import { episodeService } from '../services/episode-service'
 
 const episodesController = {
   // GET /episodes/stream
@@ -58,6 +59,36 @@ const episodesController = {
         return res.status(400).json({ message: err.message })
       }
 
+    }
+  },
+
+  // GET /episodes/:id/watch_time
+  getWatchTime: async (req: Request, res: Response) => {
+    const episodeId = Number(req.params.id)
+    const { profileId } = req.body
+
+    try {
+      const watchTime = await episodeService.getWatchTime(profileId, episodeId)
+      return res.json(watchTime)
+    } catch (err) {
+      if (err instanceof Error) {
+        return res.status(400).json({ message: err.message })
+      }
+    }
+  },
+
+  // POST /episodes/:id/watch_time
+  setWatchTime: async (req: Request, res: Response) => {
+    const episodeId = Number(req.params.id)
+    const { profileId, seconds } = req.body
+
+    try {
+      const watchTime = await episodeService.setWatchTime(profileId, episodeId, seconds)
+      return res.json(watchTime)
+    } catch (err) {
+      if (err instanceof Error) {
+        return res.status(400).json({ message: err.message })
+      }
     }
   }
 }
