@@ -46,6 +46,26 @@ const profileService = {
     await Profile.destroy({
       where: { id }
     })
+  },
+
+  findWatchingEpisodes: async (id: string) => {
+    const watching = await Profile.findByPk(id, {
+      attributes: [],
+      include: {
+        association: 'episodes',
+        attributes: [
+          'id',
+          'name',
+          'synopsis',
+          'order',
+          'video_url',
+          'seconds_long',
+          'course_id'
+        ]
+      }
+    })
+
+    return watching
   }
 }
 

@@ -26,6 +26,7 @@ router.get('/episodes/:id/watch_time', ensureAuth, episodesController.getWatchTi
 router.post('/episodes/:id/watch_time', ensureAuth, episodesController.setWatchTime)
 
 router.get('/profiles', ensureAuth, profilesController.index)
+router.get('/profiles/:id/watching', ensureAuth, profilesController.watching)
 router.post('/profiles', ensureAuth, profilesController.save)
 router.put('/profiles/:id', ensureAuth, profilesController.update)
 router.delete('/profiles/:id', ensureAuth, profilesController.delete)

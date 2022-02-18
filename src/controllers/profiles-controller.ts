@@ -59,6 +59,20 @@ const profilesController = {
         return res.status(400).json({ message: err.message })
       }
     }
+  },
+
+  // GET /profiles/:id/watching
+  watching: async (req: Request, res: Response) => {
+    const { id } = req.params
+
+    try {
+      const watching = await profileService.findWatchingEpisodes(id)
+      return res.json(watching)
+    } catch (err) {
+      if (err instanceof Error) {
+        return res.status(400).json({ message: err.message })
+      }
+    }
   }
 }
 
