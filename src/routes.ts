@@ -6,12 +6,17 @@ import { episodesController } from './controllers/episodes-controller'
 import { favoritesController } from './controllers/favorites-controller'
 import { likesController } from './controllers/likes-controller'
 import { profilesController } from './controllers/profiles-controller'
+import { usersController } from './controllers/users-controller'
 import { ensureAuth, ensureAuthViaQuery } from './middlewares/auth'
 
 const router = express.Router()
 
 router.post('/auth/register', authController.register)
 router.post('/auth/login', authController.login)
+
+router.get('/account', ensureAuth, usersController.show)
+router.put('/account', ensureAuth, usersController.update)
+router.put('/account/password', ensureAuth, usersController.updatePassword)
 
 router.get('/categories', ensureAuth, categoriesController.index)
 router.get('/categories/:id', ensureAuth, categoriesController.show)
