@@ -42,6 +42,7 @@ const usersController = {
     }
   },
 
+  // PUT /account/password
   updatePassword: async (req: RequestWithUser, res: Response) => {
     const user = req.user
     const { password } = req.body

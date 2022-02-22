@@ -3,6 +3,7 @@ import { getPaginationParams } from '../helpers/get-pagination-params'
 import { categoryService } from '../services/category-service'
 
 const categoriesController = {
+  // GET /categories?page=1&perPage=10
   index: async (req: Request, res: Response) => {
     const [page, perPage] = getPaginationParams(req.query)
 

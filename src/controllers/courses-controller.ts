@@ -25,6 +25,7 @@ const coursesController = {
     }
   },
 
+  // GET /courses/featured
   featured: async (req: Request, res: Response) => {
     try {
       const featuredCourses = await courseService.getRandomFeaturedCourses()
