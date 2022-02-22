@@ -2,13 +2,13 @@ import { Request, Response } from 'express'
 import { likeService } from '../services/like-service'
 
 const likesController = {
-  // POST /profiles/:profile_id/likes/:course_id
+  // POST /profiles/:profileId/likes/:courseId
   save: async (req: Request, res: Response) => {
-    const profile_id = Number(req.params.profile_id)
-    const course_id = Number(req.params.course_id)
+    const profileId = Number(req.params.profileId)
+    const courseId = Number(req.params.courseId)
 
     try {
-      const like = await likeService.create(profile_id, course_id)
+      const like = await likeService.create(profileId, courseId)
 
       return res.status(201).json(like)
     } catch (err) {
@@ -18,12 +18,12 @@ const likesController = {
     }
   },
 
-  // DELETE /profiles/:profile_id/likes/:course_id
+  // DELETE /profiles/:profileId/likes/:courseId
   delete: async (req: Request, res: Response) => {
-    const { profile_id, course_id } = req.params
+    const { profileId, courseId } = req.params
 
     try {
-      await likeService.delete(profile_id, course_id)
+      await likeService.delete(profileId, courseId)
       return res.status(204).send()
     } catch (err) {
       if (err instanceof Error) {

@@ -6,13 +6,13 @@ interface EpisodeAttributes {
   name: string
   synopsis: string
   order: number
-  video_url: string
-  seconds_long: number
-  course_id: number
+  videoUrl: string
+  secondsLong: number
+  courseId: number
 }
 
 interface EpisodeCreationAttributes
-  extends Optional<EpisodeAttributes, 'id' | 'video_url' | 'seconds_long' > {}
+  extends Optional<EpisodeAttributes, 'id' | 'videoUrl' | 'secondsLong' > {}
 
 interface EpisodeInstance
   extends Model<EpisodeAttributes, EpisodeCreationAttributes>, EpisodeAttributes {}
@@ -37,13 +37,13 @@ const Episode = database.define<EpisodeInstance, EpisodeAttributes>('episodes', 
     unique: true,
     type: DataTypes.STRING
   },
-  video_url: {
+  videoUrl: {
     type: DataTypes.STRING
   },
-  seconds_long: {
+  secondsLong: {
     type: DataTypes.INTEGER
   },
-  course_id: {
+  courseId: {
     allowNull: false,
     type: DataTypes.INTEGER,
     references: { model: 'courses', key: 'id' },

@@ -1,11 +1,11 @@
 import { Like } from "../models/like"
 
 const likeService = {
-  create: async (profile_id: number, course_id: number) => {
+  create: async (profileId: number, courseId: number) => {
     const likeAlreadyExists = await Like.findOne({
       where: {
-        profile_id,
-        course_id
+        profileId,
+        courseId
       }
     })
 
@@ -14,29 +14,27 @@ const likeService = {
     }
 
     const like = await Like.create({
-      profile_id,
-      course_id
-    }, {
-      fields: ['profile_id', 'course_id']
+      profileId,
+      courseId
     })
 
     return like
   },
 
-  delete: async (profile_id: string, course_id: string) => {
+  delete: async (profileId: string, courseId: string) => {
     await Like.destroy({
       where: {
-        profile_id,
-        course_id
+        profileId,
+        courseId
       }
     })
   },
 
-  isLiked: async (course_id: string | number, profile_id: string | number) => {
+  isLiked: async (courseId: string | number, profileId: string | number) => {
     const like = await Like.findOne({
       where: {
-        course_id,
-        profile_id
+        courseId,
+        profileId
       }
     })
 

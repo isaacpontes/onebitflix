@@ -6,14 +6,14 @@ import { episodeService } from '../services/episode-service'
 const episodesController = {
   // GET /episodes/stream
   stream: async (req: Request, res: Response) => {
-    const { video_url } = req.query
+    const { videoUrl } = req.query
 
     try {
-      if (typeof video_url !== 'string') {
-        throw new Error('video_url must be of type \'string\'');
+      if (typeof videoUrl !== 'string') {
+        throw new Error('videoUrl must be of type \'string\'');
       }
 
-      const filePath = path.join(__dirname, '../../uploads', video_url)
+      const filePath = path.join(__dirname, '../../uploads', videoUrl)
       const fileStat = fs.statSync(filePath)
 
       const range = req.headers.range

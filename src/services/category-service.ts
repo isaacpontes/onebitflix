@@ -24,7 +24,7 @@ const categoryService = {
       attributes: ['id', 'name'],
       include: {
         association: 'courses',
-        attributes: ['id', 'name', 'synopsis', 'thumbnail_url'],
+        attributes: ['id', 'name', 'synopsis', ['thumbnail_url', 'thumbnailUrl']],
       }
     })
 

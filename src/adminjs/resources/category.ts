@@ -3,9 +3,9 @@ import { ResourceOptions } from "adminjs";
 const categoryResourceOptions: ResourceOptions = {
   navigation: 'Catálogo',
   editProperties: ['name', 'position'],
-  filterProperties: ['name', 'position', 'created_at', 'updated_at'],
+  filterProperties: ['name', 'position', 'createdAt', 'updatedAt'],
   listProperties: ['id', 'name', 'position'],
-  showProperties: ['id', 'name', 'position', 'created_at', 'updated_at']
+  showProperties: ['id', 'name', 'position', 'createdAt', 'updatedAt']
 }
 
 export { categoryResourceOptions }

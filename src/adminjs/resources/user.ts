@@ -11,14 +11,14 @@ const userResourceOptions: ResourceOptions = {
     },
     role: {
       availableValues: [
-        { value: 'admin', label: 'Administrator' },
-        { value: 'user', label: 'Standard User' }
+        { value: 'admin', label: 'Administrador' },
+        { value: 'user', label: 'Usuário Padrão' }
       ]
     }
   },
   editProperties: [
-    'first_name',
-    'last_name',
+    'firstName',
+    'lastName',
     'phone',
     'birth',
     'email',
@@ -26,31 +26,31 @@ const userResourceOptions: ResourceOptions = {
     'role'
   ],
   filterProperties: [
-    'first_name',
-    'last_name',
+    'firstName',
+    'lastName',
     'phone',
     'birth',
     'email',
     'role',
-    'created_at',
-    'updated_at'
+    'createdAt',
+    'updatedAt'
   ],
   listProperties: [
     'id',
-    'first_name',
+    'firstName',
     'email',
     'role'
   ],
   showProperties: [
     'id',
-    'first_name',
-    'last_name',
+    'firstName',
+    'lastName',
     'phone',
     'birth',
     'email',
     'role',
-    'created_at',
-    'updated_at'
+    'createdAt',
+    'updatedAt'
   ],
 }
 

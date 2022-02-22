@@ -8,9 +8,7 @@ const database = new Sequelize({
   username: 'onebitflix',
   password: 'onebitflix',
   define: {
-    underscored: true,
-    createdAt: 'created_at',
-    updatedAt: 'updated_at'
+    underscored: true
   }
 })
 

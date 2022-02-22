@@ -4,10 +4,10 @@ import { FeatureType, ResourceOptions } from 'adminjs'
 
 const episodeResourceOptions: ResourceOptions = {
   navigation: 'Catálogo',
-  editProperties: ['name', 'synopsis', 'course_id', 'order', 'upload_video', 'seconds_long'  ],
-  filterProperties: ['name', 'synopsis', 'course_id', 'seconds_long', 'created_at', 'updated_at'],
-  listProperties: ['id', 'name', 'course_id', 'order', 'seconds_long'],
-  showProperties: ['id', 'name', 'synopsis', 'course_id', 'order', 'video_url', 'seconds_long', 'created_at', 'updated_at']
+  editProperties: ['name', 'synopsis', 'courseId', 'order', 'uploadVideo', 'secondsLong'  ],
+  filterProperties: ['name', 'synopsis', 'courseId', 'secondsLong', 'createdAt', 'updatedAt'],
+  listProperties: ['id', 'name', 'courseId', 'order', 'secondsLong'],
+  showProperties: ['id', 'name', 'synopsis', 'courseId', 'order', 'videoUrl', 'secondsLong', 'createdAt', 'updatedAt']
 }
 
 const episodeResourceFeatures: FeatureType[] = [
@@ -18,10 +18,10 @@ const episodeResourceFeatures: FeatureType[] = [
       }
     },
     properties: {
-      key: 'video_url',
-      file: 'upload_video'
+      key: 'videoUrl',
+      file: 'uploadVideo'
     },
-    uploadPath: (record, filename) => `videos/course-${record.get('course_id')}/${filename}`
+    uploadPath: (record, filename) => `videos/course-${record.get('courseId')}/${filename}`
   })
 ]
 

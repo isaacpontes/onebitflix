@@ -4,10 +4,10 @@ import path from 'path'
 
 const courseResourceOptions: ResourceOptions = {
   navigation: 'Catálogo',
-  editProperties: ['name', 'synopsis', 'upload_thumbnail', 'featured', 'category_id'],
-  filterProperties: ['name', 'synopsis', 'featured', 'category_id', 'created_at', 'updated_at'],
-  listProperties: ['id', 'name', 'featured', 'category_id'],
-  showProperties: ['id', 'name', 'synopsis', 'featured', 'thumbnail_url', 'category_id', 'created_at', 'updated_at']
+  editProperties: ['name', 'synopsis', 'uploadThumbnail', 'featured', 'categoryId'],
+  filterProperties: ['name', 'synopsis', 'featured', 'categoryId', 'createdAt', 'updatedAt'],
+  listProperties: ['id', 'name', 'featured', 'categoryId'],
+  showProperties: ['id', 'name', 'synopsis', 'featured', 'thumbnailUrl', 'categoryId', 'createdAt', 'updatedAt']
 }
 
 const courseResourceFeatures: FeatureType[] = [
@@ -18,8 +18,8 @@ const courseResourceFeatures: FeatureType[] = [
       }
     },
     properties: {
-      key: 'thumbnail_url',
-      file: 'upload_thumbnail'
+      key: 'thumbnailUrl',
+      file: 'uploadThumbnail'
     },
     uploadPath: (record, filename) => `thumbnails/course-${record.get('id')}/${filename}`
   })

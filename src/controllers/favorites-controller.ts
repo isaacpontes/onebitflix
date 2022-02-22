@@ -2,12 +2,12 @@ import { Request, Response } from 'express'
 import { favoriteService } from '../services/favorite-service'
 
 const favoritesController = {
-  //GET /profiles/:profile_id/favorites
+  //GET /profiles/:profileId/favorites
   index: async (req: Request, res: Response) => {
-    const { profile_id } = req.params
+    const { profileId } = req.params
 
     try {
-      const favorites = await favoriteService.findByProfileId(profile_id)
+      const favorites = await favoriteService.findByProfileId(profileId)
       return res.json(favorites)
     } catch (err) {
       if (err instanceof Error) {
@@ -16,13 +16,13 @@ const favoritesController = {
     }
   },
 
-  // POST /profiles/:profile_id/favorites/:course_id
+  // POST /profiles/:profileId/favorites/:courseId
   save: async (req: Request, res: Response) => {
-    const profile_id = Number(req.params.profile_id)
-    const course_id = Number(req.params.course_id)
+    const profileId = Number(req.params.profileId)
+    const courseId = Number(req.params.courseId)
 
     try {
-      const favorite = await favoriteService.create(profile_id, course_id)
+      const favorite = await favoriteService.create(profileId, courseId)
 
       return res.status(201).json(favorite)
     } catch (err) {
@@ -32,12 +32,12 @@ const favoritesController = {
     }
   },
 
-  // DELETE /profiles/:profile_id/favorites/:course_id
+  // DELETE /profiles/:profileId/favorites/:courseId
   delete: async (req: Request, res: Response) => {
-    const { profile_id, course_id } = req.params
+    const { profileId, courseId } = req.params
 
     try {
-      await favoriteService.delete(profile_id, course_id)
+      await favoriteService.delete(profileId, courseId)
       return res.status(204).send()
     } catch (err) {
       if (err instanceof Error) {

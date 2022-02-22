@@ -13,7 +13,7 @@ Course.belongsTo(Category)
 Course.hasMany(Episode)
 Course.belongsToMany(Profile, { through: Favorite })
 Course.belongsToMany(Profile, { through: Like })
-Course.hasMany(Favorite, { as: 'favorites_profiles', foreignKey: 'course_id' })
+Course.hasMany(Favorite, { as: 'favoritesProfiles', foreignKey: 'courseId' })
 
 Episode.belongsTo(Course)
 Episode.belongsToMany(Profile, { through: WatchTime })
@@ -25,7 +25,7 @@ Profile.belongsTo(User)
 Profile.belongsToMany(Course, { through: Favorite })
 Profile.belongsToMany(Course, { through: Like })
 Profile.belongsToMany(Episode, { through: WatchTime })
-Profile.hasMany(Favorite, { as: 'favorites_courses', foreignKey: 'profile_id' })
+Profile.hasMany(Favorite, { as: 'favoritesCourses', foreignKey: 'profileId' })
 
 User.hasMany(Profile)
 

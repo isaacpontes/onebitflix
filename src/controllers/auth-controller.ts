@@ -5,7 +5,7 @@ import { userService } from '../services/user-service'
 const authController = {
   // POST /auth/register
   register: async (req: Request, res: Response) => {
-    const { first_name, last_name, phone, birth, email, password } = req.body
+    const { firstName, lastName, phone, birth, email, password } = req.body
 
     try {
       const userAlreadyExists = await userService.findByEmail(email)
@@ -15,8 +15,8 @@ const authController = {
       }
 
       const user = await userService.create({
-        first_name,
-        last_name,
+        firstName,
+        lastName,
         phone,
         birth,
         email,
@@ -54,7 +54,7 @@ const authController = {
 
         const payload = {
           id: user.id,
-          first_name: user.first_name,
+          firstName: user.firstName,
           email: user.email
         }
 

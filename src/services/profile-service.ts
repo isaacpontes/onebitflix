@@ -1,17 +1,17 @@
 import { Profile } from "../models"
 
 const profileService = {
-  findByUserId: async (user_id: number) => {
+  findByUserId: async (userId: number) => {
     const userProfiles = await Profile.findAll({
-      attributes: ['id', 'name', 'avatar_url'],
-      where: { user_id },
+      attributes: ['id', 'name', ['avatar_url', 'avatarUrl']],
+      where: { userId },
       order: [['created_at', 'ASC']]
     })
     return userProfiles
   },
 
-  create: async (name: string, avatar_url: string, user_id: number) => {
-    const profilesCount = await Profile.count({ where: { user_id } })
+  create: async (name: string, avatarUrl: string, userId: number) => {
+    const profilesCount = await Profile.count({ where: { userId } })
 
     if (profilesCount >= 4) {
       throw new Error('Número máximo de perfis atingido')
@@ -19,17 +19,17 @@ const profileService = {
 
     const profile = await Profile.create({
       name,
-      avatar_url,
-      user_id
+      avatarUrl,
+      userId
     })
 
     return profile
   },
 
-  updateOne: async (id: string, name: string, avatar_url: string) => {
+  updateOne: async (id: string, name: string, avatarUrl: string) => {
     const [affectedRows, updatedProfiles] = await Profile.update({
       name,
-      avatar_url
+      avatarUrl
     }, {
       where: { id },
       returning: true
@@ -58,10 +58,14 @@ const profileService = {
           'name',
           'synopsis',
           'order',
-          'video_url',
-          'seconds_long',
-          'course_id'
-        ]
+          ['video_url', 'videoUrl'],
+          ['seconds_long', 'secondsLong'],
+          ['course_id', 'courseId']
+        ],
+        through: {
+          as: 'watchTime',
+          attributes: ['seconds']
+        }
       }
     })
 

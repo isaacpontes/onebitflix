@@ -1,26 +1,36 @@
 import { Favorite } from "../models/favorite"
 
 const favoriteService = {
-  findByProfileId: async (profile_id: string) => {
+  findByProfileId: async (profileId: string) => {
     const favorites = await Favorite.findAll({
-      attributes: ['profile_id'],
-      where: { profile_id },
-      include: 'course'
+      attributes: [['profile_id', 'profileId']],
+      where: { profileId },
+      include: {
+        association: 'course',
+        attributes: [
+          'id',
+          'name',
+          'synopsis',
+          ['thumbnail_url', 'thumbnailUrl'],
+          'featured',
+          ['category_id', 'categoryId']
+        ]
+      },
     })
 
     const courses = favorites.map(favorite => favorite.course)
 
     return {
-      profile_id,
+      profileId,
       courses
     }
   },
 
-  create: async (profile_id: number, course_id: number) => {
+  create: async (profileId: number, courseId: number) => {
     const favoriteAlreadyExists = await Favorite.findOne({
       where: {
-        profile_id,
-        course_id
+        profileId,
+        courseId
       }
     })
 
@@ -29,20 +39,18 @@ const favoriteService = {
     }
 
     const favorite = await Favorite.create({
-      profile_id,
-      course_id
-    }, {
-      fields: ['profile_id', 'course_id']
+      profileId,
+      courseId
     })
 
     return favorite
   },
 
-  delete: async (profile_id: string, course_id: string) => {
+  delete: async (profileId: string, courseId: string) => {
     await Favorite.destroy({
       where: {
-        profile_id,
-        course_id
+        profileId,
+        courseId
       }
     })
   }

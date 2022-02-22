@@ -6,8 +6,8 @@ type CheckPasswordCallback = (err: Error | undefined, isSame: boolean) => void
 
 interface UserAttributes {
   id: number
-  first_name: string
-  last_name: string
+  firstName: string
+  lastName: string
   phone: string
   birth: Date
   email: string
@@ -28,11 +28,11 @@ const User = database.define<UserInstance, UserAttributes>('users', {
     primaryKey: true,
     type: DataTypes.INTEGER
   },
-  first_name: {
+  firstName: {
     allowNull: false,
     type: DataTypes.STRING
   },
-  last_name: {
+  lastName: {
     allowNull: false,
     type: DataTypes.STRING
   },

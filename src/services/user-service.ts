@@ -4,7 +4,15 @@ import { UserCreationAttributes } from '../models/user'
 const userService = {
   findByEmail: async (email: string) => {
     const user = await User.findOne({
-      attributes: ['id', 'first_name', 'last_name', 'phone', 'birth', 'email', 'password'],
+      attributes: [
+        'id',
+        ['first_name', 'firstName'],
+        ['last_name', 'lastName'],
+        'phone',
+        'birth',
+        'email',
+        'password'
+      ],
       where: { email }
     })
     return user
@@ -18,19 +26,19 @@ const userService = {
   updateOne: async (
     id: string | number,
     values: {
-      first_name?: string,
-      last_name?: string,
+      firstName?: string,
+      lastName?: string,
       phone?: string,
       birth?: Date,
       email?: string,
       password?: string
     }
   ) => {
-    const { first_name, last_name, phone, birth, email, password } = values
+    const { firstName, lastName, phone, birth, email, password } = values
 
     const [affectedRows, updatedUsers] = await User.update({
-      first_name,
-      last_name,
+      firstName,
+      lastName,
       phone,
       birth,
       email,

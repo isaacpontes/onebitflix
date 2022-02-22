@@ -27,8 +27,8 @@ router.get('/courses/search', ensureAuth, coursesController.search)
 router.get('/courses/:id', ensureAuth, coursesController.show)
 
 router.get('/episodes/stream', ensureAuthViaQuery, episodesController.stream)
-router.get('/episodes/:id/watch_time', ensureAuth, episodesController.getWatchTime)
-router.post('/episodes/:id/watch_time', ensureAuth, episodesController.setWatchTime)
+router.get('/episodes/:id/watchTime', ensureAuth, episodesController.getWatchTime)
+router.post('/episodes/:id/watchTime', ensureAuth, episodesController.setWatchTime)
 
 router.get('/profiles', ensureAuth, profilesController.index)
 router.get('/profiles/:id/watching', ensureAuth, profilesController.watching)
@@ -36,12 +36,12 @@ router.post('/profiles', ensureAuth, profilesController.save)
 router.put('/profiles/:id', ensureAuth, profilesController.update)
 router.delete('/profiles/:id', ensureAuth, profilesController.delete)
 
-router.get('/profiles/:profile_id/favorites', ensureAuth, favoritesController.index)
-router.post('/profiles/:profile_id/favorites/:course_id', ensureAuth, favoritesController.save)
-router.delete('/profiles/:profile_id/favorites/:course_id', ensureAuth, favoritesController.delete)
+router.get('/profiles/:profileId/favorites', ensureAuth, favoritesController.index)
+router.post('/profiles/:profileId/favorites/:courseId', ensureAuth, favoritesController.save)
+router.delete('/profiles/:profileId/favorites/:courseId', ensureAuth, favoritesController.delete)
 
-router.post('/profiles/:profile_id/likes/:course_id', ensureAuth, likesController.save)
-router.delete('/profiles/:profile_id/likes/:course_id', ensureAuth, likesController.delete)
+router.post('/profiles/:profileId/likes/:courseId', ensureAuth, likesController.save)
+router.delete('/profiles/:profileId/likes/:courseId', ensureAuth, likesController.delete)
 
 
 export { router }

@@ -1,13 +1,20 @@
-import { Op, Sequelize } from 'sequelize'
+import { Op } from 'sequelize'
 import { Course } from '../models'
 
 const courseService = {
   findByIdWithEpisodes: async (id: string) => {
     const courseWithEpisodes = await Course.findByPk(id, {
-      attributes: ['id', 'name', 'synopsis', 'thumbnail_url'],
+      attributes: ['id', 'name', 'synopsis', ['thumbnail_url', 'thumbnailUrl']],
       include: {
         association: 'episodes',
-        attributes: ['id', 'name', 'synopsis', 'order', 'video_url', 'seconds_long'],
+        attributes: [
+          'id',
+          'name',
+          'synopsis',
+          'order',
+          ['video_url', 'videoUrl'],
+          ['seconds_long', 'secondsLong']
+        ],
         order: [['order', 'ASC']]
       }
     })
@@ -17,7 +24,7 @@ const courseService = {
 
   getRandomFeaturedCourses: async () => {
     const featuredCourses = await Course.findAll({
-      attributes: ['id', 'name', 'synopsis', 'thumbnail_url'],
+      attributes: ['id', 'name', 'synopsis', ['thumbnail_url', 'thumbnailUrl']],
       where: {
         featured: true
       }
@@ -34,7 +41,7 @@ const courseService = {
         courses.id,
         courses.name,
         courses.synopsis,
-        courses.thumbnail_url,
+        courses.thumbnail_url as thumbnailUrl,
         COUNT(profiles.id) AS likes
       FROM courses
         LEFT OUTER JOIN likes
@@ -58,7 +65,7 @@ const courseService = {
     const offset = (page - 1) * perPage
 
     const { count, rows } = await Course.findAndCountAll({
-      attributes: ['id', 'name', 'synopsis', 'thumbnail_url'],
+      attributes: ['id', 'name', 'synopsis', ['thumbnail_url', 'thumbnailUrl']],
       where: {
         name: {
           [Op.iLike]: `%${name}%`

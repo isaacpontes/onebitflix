@@ -4,8 +4,8 @@ import { DataTypes, Model, Optional } from 'sequelize'
 interface ProfileAttributes {
   id: number
   name: string
-  avatar_url: string
-  user_id: number
+  avatarUrl: string
+  userId: number
 }
 
 interface ProfileCreationAttributes extends Optional<ProfileAttributes, 'id' > {}
@@ -24,10 +24,10 @@ const Profile = database.define<ProfileInstance, ProfileAttributes>('profiles', 
     allowNull: false,
     type: DataTypes.STRING
   },
-  avatar_url: {
+  avatarUrl: {
     type: DataTypes.STRING
   },
-  user_id: {
+  userId: {
     allowNull: false,
     type: DataTypes.INTEGER,
     references: { model: 'users', key: 'id' },

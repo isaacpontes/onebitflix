@@ -5,10 +5,10 @@ import { profileService } from "../services/profile-service";
 const profilesController = {
   // GET /profiles
   index: async (req: RequestWithUser, res: Response) => {
-    const user_id = req.user!.id
+    const userId = req.user!.id
 
     try {
-      const profiles = await profileService.findByUserId(user_id)
+      const profiles = await profileService.findByUserId(userId)
       return res.json(profiles)
     } catch (err) {
       if (err instanceof Error) {
@@ -19,11 +19,11 @@ const profilesController = {
 
   // POST /profiles
   save: async (req: RequestWithUser, res: Response) => {
-    const { name, avatar_url } = req.body
-    const user_id = req.user!.id
+    const { name, avatarUrl } = req.body
+    const userId = req.user!.id
 
     try {
-      const profile = await profileService.create(name, avatar_url, user_id)
+      const profile = await profileService.create(name, avatarUrl, userId)
       return res.status(201).json(profile)
     } catch (err) {
       if (err instanceof Error) {
@@ -35,10 +35,10 @@ const profilesController = {
   // PUT /profiles/:id
   update: async (req: Request, res: Response) => {
     const { id } = req.params
-    const { name, avatar_url } = req.body
+    const { name, avatarUrl } = req.body
 
     try {
-      const profile = await profileService.updateOne(id, name, avatar_url)
+      const profile = await profileService.updateOne(id, name, avatarUrl)
       return res.json(profile)
     } catch (err) {
       if (err instanceof Error) {

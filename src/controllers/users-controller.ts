@@ -19,7 +19,7 @@ const usersController = {
   // PUT /account
   update: async (req: RequestWithUser, res: Response) => {
     const user = req.user
-    const { first_name, last_name, phone, birth, email } = req.body
+    const { firstName, lastName, phone, birth, email } = req.body
 
     if (!user) {
       return res.status(401).json({ message: 'Não autorizado!' })
@@ -27,8 +27,8 @@ const usersController = {
 
     try {
       const updatedUser = await userService.updateOne(user.id, {
-        first_name,
-        last_name,
+        firstName,
+        lastName,
         phone,
         birth,
         email
