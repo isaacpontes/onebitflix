@@ -2,6 +2,7 @@ import { Op } from 'sequelize'
 import { Course } from '../models'
 
 const courseService = {
+
   findByIdWithEpisodes: async (id: string) => {
     const courseWithEpisodes = await Course.findByPk(id, {
       attributes: ['id', 'name', 'synopsis', ['thumbnail_url', 'thumbnailUrl']],
@@ -59,6 +60,15 @@ const courseService = {
     } else {
       return null
     }
+  },
+
+  getTopTenNewest: async () => {
+    const courses = await Course.findAll({
+      limit: 10,
+      order: [['created_at', 'DESC']]
+    })
+
+    return courses
   },
 
   findByName: async (name: string, page: number, perPage: number) => {
