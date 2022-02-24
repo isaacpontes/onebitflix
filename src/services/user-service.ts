@@ -11,7 +11,8 @@ const userService = {
         'phone',
         'birth',
         'email',
-        'password'
+        'password',
+        'created_at'
       ],
       where: { email }
     })
