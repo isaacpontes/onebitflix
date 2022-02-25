@@ -1,4 +1,30 @@
 import { Profile } from "../models"
+import { EpisodeInstance } from "../models/episode"
+
+function filterLastEpisodeFromEachCourse(episodes: EpisodeInstance[]) {
+  const coursesOnList: number[] = []
+
+  const lastEpisodes = episodes.reduce((currentList, episode) => {
+    if (!coursesOnList.includes(episode.courseId)) {
+      coursesOnList.push(episode.courseId)
+      currentList.push(episode)
+      return currentList
+    }
+
+    const episodeFromSameCourse = currentList.find(e => e.courseId === episode.courseId)
+
+    if (episodeFromSameCourse!.order > episode.order) {
+      return currentList
+    }
+
+    const listWithoutEpisodeFromSameCourse = currentList.filter(e => e.courseId !== episode.courseId)
+    listWithoutEpisodeFromSameCourse.push(episode)
+
+    return listWithoutEpisodeFromSameCourse
+  }, [] as EpisodeInstance[])
+
+  return lastEpisodes
+}
 
 const profileService = {
   findByUserId: async (userId: number) => {
@@ -48,28 +74,28 @@ const profileService = {
     })
   },
 
-  findWatchingEpisodes: async (id: string) => {
-    const watching = await Profile.findByPk(id, {
+  getKeepWatchingList: async (id: string) => {
+    const profileWithWatchingEpisodes = await Profile.findByPk(id, {
       attributes: [],
       include: {
         association: 'episodes',
-        attributes: [
-          'id',
-          'name',
-          'synopsis',
-          'order',
-          ['video_url', 'videoUrl'],
-          ['seconds_long', 'secondsLong'],
-          ['course_id', 'courseId']
-        ],
+        include: [{
+          association: 'course'
+        }],
         through: {
-          as: 'watchTime',
-          attributes: ['seconds']
+          as: 'watchTime'
         }
       }
     })
 
-    return watching
+    if (!profileWithWatchingEpisodes) {
+      throw new Error('Profile not found!')
+    }
+
+    const keepWatchingList = filterLastEpisodeFromEachCourse(profileWithWatchingEpisodes.episodes!)
+    // @ts-ignore
+    keepWatchingList.sort((a, b) => a.watchTime.updatedAt < b.watchTime.updatedAt ? 1 : -1)
+    return keepWatchingList
   }
 }
 

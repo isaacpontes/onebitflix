@@ -30,4 +30,4 @@ const WatchTime = database.define<WatchTimeInstance, WatchTimeAttributes>('watch
   }
 })
 
-export { WatchTime }
+export { WatchTime, WatchTimeInstance }

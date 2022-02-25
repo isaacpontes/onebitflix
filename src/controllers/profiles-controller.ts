@@ -66,7 +66,7 @@ const profilesController = {
     const { id } = req.params
 
     try {
-      const watching = await profileService.findWatchingEpisodes(id)
+      const watching = await profileService.getKeepWatchingList(id)
       return res.json(watching)
     } catch (err) {
       if (err instanceof Error) {

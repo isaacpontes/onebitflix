@@ -1,5 +1,6 @@
 import { database } from '../database'
 import { DataTypes, Model, Optional } from 'sequelize'
+import { EpisodeInstance } from './episode'
 
 interface ProfileAttributes {
   id: number
@@ -10,8 +11,9 @@ interface ProfileAttributes {
 
 interface ProfileCreationAttributes extends Optional<ProfileAttributes, 'id' > {}
 
-interface ProfileInstance
-  extends Model<ProfileAttributes, ProfileCreationAttributes>, ProfileAttributes {}
+interface ProfileInstance extends Model<ProfileAttributes, ProfileCreationAttributes>, ProfileAttributes {
+  episodes?: EpisodeInstance[]
+}
 
 const Profile = database.define<ProfileInstance, ProfileAttributes>('profiles', {
   id: {
