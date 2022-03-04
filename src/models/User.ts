@@ -1,7 +1,7 @@
 import { database } from '../database'
 import { DataTypes, Model, Optional } from 'sequelize'
 import bcrypt from 'bcrypt'
-import { EpisodeInstance } from './episode'
+import { EpisodeInstance } from './Episode'
 
 type CheckPasswordCallback = (err: Error | undefined, isSame: boolean) => void
 

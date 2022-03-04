@@ -1,6 +1,6 @@
 import { Response } from 'express'
 import { RequestWithUser } from '../middlewares/auth'
-import { userService } from '../services/user-service'
+import { userService } from '../services/userService'
 
 const usersController = {
   // GET /users/current

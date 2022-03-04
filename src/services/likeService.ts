@@ -1,4 +1,4 @@
-import { Like } from "../models/like"
+import { Like } from "../models"
 
 const likeService = {
   create: async (userId: number, courseId: number) => {

@@ -1,6 +1,6 @@
 import { User } from '../models'
-import { EpisodeInstance } from '../models/episode'
-import { UserCreationAttributes } from '../models/user'
+import { EpisodeInstance } from '../models/Episode'
+import { UserCreationAttributes } from '../models/User'
 
 function filterLastEpisodeFromEachCourse(episodes: EpisodeInstance[]) {
   const coursesOnList: number[] = []

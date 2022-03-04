@@ -1,6 +1,6 @@
 import { database } from '../database'
 import { DataTypes, Model } from 'sequelize'
-import { CourseInstance } from './course'
+import { CourseInstance } from './Course'
 
 interface FavoriteAttributes {
   userId: number

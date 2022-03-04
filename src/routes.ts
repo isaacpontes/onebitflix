@@ -1,11 +1,11 @@
 import express from 'express'
-import { authController } from './controllers/auth-controller'
-import { categoriesController } from './controllers/categories-controller'
-import { coursesController } from './controllers/courses-controller'
-import { episodesController } from './controllers/episodes-controller'
-import { favoritesController } from './controllers/favorites-controller'
-import { likesController } from './controllers/likes-controller'
-import { usersController } from './controllers/users-controller'
+import { authController } from './controllers/authController'
+import { categoriesController } from './controllers/categoriesController'
+import { coursesController } from './controllers/coursesController'
+import { episodesController } from './controllers/episodesController'
+import { favoritesController } from './controllers/favoritesController'
+import { likesController } from './controllers/likesController'
+import { usersController } from './controllers/usersController'
 import { ensureAuth, ensureAuthViaQuery } from './middlewares/auth'
 
 const router = express.Router()

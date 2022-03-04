@@ -1,7 +1,7 @@
 import { Request, Response } from 'express'
-import { getPaginationParams } from '../helpers/get-pagination-params'
-import { courseService } from '../services/course-service'
-import { likeService } from '../services/like-service'
+import { getPaginationParams } from '../helpers/getPaginationParams'
+import { courseService } from '../services/courseService'
+import { likeService } from '../services/likeService'
 
 const coursesController = {
   // GET /courses/:id

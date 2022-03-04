@@ -1,7 +1,7 @@
 import { Request, Response } from 'express'
 import fs from 'fs'
 import path from 'path'
-import { episodeService } from '../services/episode-service'
+import { episodeService } from '../services/episodeService'
 
 const episodesController = {
   // GET /episodes/stream

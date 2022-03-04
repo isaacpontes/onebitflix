@@ -1,6 +1,6 @@
 import { Response } from 'express'
 import { RequestWithUser } from '../middlewares/auth'
-import { favoriteService } from '../services/favorite-service'
+import { favoriteService } from '../services/favoriteService'
 
 const favoritesController = {
   // GET /favorites

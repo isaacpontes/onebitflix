@@ -1,7 +1,7 @@
 import { database } from '../database'
 import { DataTypes, Model, Optional } from 'sequelize'
-import { WatchTimeInstance } from './watch-time'
-import { CourseInstance } from './course'
+import { WatchTimeInstance } from './WatchTime'
+import { CourseInstance } from './Course'
 
 interface EpisodeAttributes {
   id: number

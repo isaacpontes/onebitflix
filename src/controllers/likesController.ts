@@ -1,6 +1,6 @@
 import { Response } from 'express'
 import { RequestWithUser } from '../middlewares/auth'
-import { likeService } from '../services/like-service'
+import { likeService } from '../services/likeService'
 
 const likesController = {
   // POST /likes

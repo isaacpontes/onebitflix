@@ -1,10 +1,10 @@
-import { Category } from './category'
-import { Course } from './course'
-import { Episode } from './episode'
-import { Favorite } from './favorite'
-import { Like } from './like'
-import { User } from './user'
-import { WatchTime } from './watch-time'
+import { Category } from './Category'
+import { Course } from './Course'
+import { Episode } from './Episode'
+import { Favorite } from './Favorite'
+import { Like } from './Like'
+import { User } from './User'
+import { WatchTime } from './WatchTime'
 
 Category.hasMany(Course)
 
@@ -30,6 +30,7 @@ export {
   Course,
   Episode,
   Favorite,
+  Like,
   User,
   WatchTime
 }
