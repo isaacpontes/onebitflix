@@ -5,7 +5,7 @@ import { EpisodeInstance } from './Episode'
 
 type CheckPasswordCallback = (err: Error | undefined, isSame: boolean) => void
 
-interface UserAttributes {
+export interface UserAttributes {
   id: number
   firstName: string
   lastName: string
@@ -16,14 +16,14 @@ interface UserAttributes {
   role: 'admin' | 'user'
 }
 
-interface UserCreationAttributes extends Optional<UserAttributes, 'id'> {}
+export interface UserCreationAttributes extends Optional<UserAttributes, 'id'> {}
 
-interface UserInstance extends Model<UserAttributes, UserCreationAttributes>, UserAttributes {
+export interface UserInstance extends Model<UserAttributes, UserCreationAttributes>, UserAttributes {
   episodes?: EpisodeInstance[]
   checkPassword: (password: string, callbackfn: CheckPasswordCallback) => void
 }
 
-const User = database.define<UserInstance, UserAttributes>('users', {
+export const User = database.define<UserInstance, UserAttributes>('users', {
   id: {
     allowNull: false,
     autoIncrement: true,
@@ -81,5 +81,3 @@ User.prototype.checkPassword = function (password: string, callbackfn: (err: Err
     }
   })
 }
-
-export { User, UserCreationAttributes, UserInstance }

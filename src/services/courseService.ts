@@ -1,8 +1,7 @@
 import { Op } from 'sequelize'
 import { Course } from '../models'
 
-const courseService = {
-
+export const courseService = {
   findByIdWithEpisodes: async (id: string) => {
     const courseWithEpisodes = await Course.findByPk(id, {
       attributes: ['id', 'name', 'synopsis', ['thumbnail_url', 'thumbnailUrl']],
@@ -93,5 +92,3 @@ const courseService = {
     }
   }
 }
-
-export { courseService }

@@ -2,7 +2,7 @@ import path from 'path'
 import uploadFileFeature from '@adminjs/upload'
 import { FeatureType, ResourceOptions } from 'adminjs'
 
-const episodeResourceOptions: ResourceOptions = {
+export const episodeResourceOptions: ResourceOptions = {
   navigation: 'Catálogo',
   editProperties: ['name', 'synopsis', 'courseId', 'order', 'uploadVideo', 'secondsLong'  ],
   filterProperties: ['name', 'synopsis', 'courseId', 'secondsLong', 'createdAt', 'updatedAt'],
@@ -10,7 +10,7 @@ const episodeResourceOptions: ResourceOptions = {
   showProperties: ['id', 'name', 'synopsis', 'courseId', 'order', 'videoUrl', 'secondsLong', 'createdAt', 'updatedAt']
 }
 
-const episodeResourceFeatures: FeatureType[] = [
+export const episodeResourceFeatures: FeatureType[] = [
   uploadFileFeature({
     provider: {
       local: {
@@ -24,8 +24,3 @@ const episodeResourceFeatures: FeatureType[] = [
     uploadPath: (record, filename) => `videos/course-${record.get('courseId')}/${filename}`
   })
 ]
-
-export {
-  episodeResourceOptions,
-  episodeResourceFeatures
-}

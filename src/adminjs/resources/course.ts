@@ -2,7 +2,7 @@ import { FeatureType, ResourceOptions } from 'adminjs'
 import uploadFileFeature from '@adminjs/upload'
 import path from 'path'
 
-const courseResourceOptions: ResourceOptions = {
+export const courseResourceOptions: ResourceOptions = {
   navigation: 'Catálogo',
   editProperties: ['name', 'synopsis', 'uploadThumbnail', 'featured', 'categoryId'],
   filterProperties: ['name', 'synopsis', 'featured', 'categoryId', 'createdAt', 'updatedAt'],
@@ -10,7 +10,7 @@ const courseResourceOptions: ResourceOptions = {
   showProperties: ['id', 'name', 'synopsis', 'featured', 'thumbnailUrl', 'categoryId', 'createdAt', 'updatedAt']
 }
 
-const courseResourceFeatures: FeatureType[] = [
+export const courseResourceFeatures: FeatureType[] = [
   uploadFileFeature({
     provider: {
       local: {
@@ -24,5 +24,3 @@ const courseResourceFeatures: FeatureType[] = [
     uploadPath: (record, filename) => `thumbnails/course-${record.get('id')}/${filename}`
   })
 ]
-
-export { courseResourceOptions, courseResourceFeatures }

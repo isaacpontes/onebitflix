@@ -10,7 +10,7 @@ import { authtenticationOptions } from '../adminjs/authentication'
 
 AdminJs.registerAdapter(AdminJsSequelize)
 
-const adminJs = new AdminJs({
+export const adminJs = new AdminJs({
   databases: [database],
   resources: adminJsResources,
   rootPath: '/admin',
@@ -19,6 +19,4 @@ const adminJs = new AdminJs({
   branding: brandingOptions
 })
 
-const adminJsRouter = AdminJsExpress.buildAuthenticatedRouter(adminJs, authtenticationOptions)
-
-export { adminJs, adminJsRouter }
+export const adminJsRouter = AdminJsExpress.buildAuthenticatedRouter(adminJs, authtenticationOptions)

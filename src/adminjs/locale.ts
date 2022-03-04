@@ -1,6 +1,6 @@
 import { Locale } from 'adminjs'
 
-const locale: Locale = {
+export const locale: Locale = {
   language: 'pt-BR',
   translations: {
     actions: {
@@ -111,5 +111,3 @@ const locale: Locale = {
     },
   }
 }
-
-export { locale }

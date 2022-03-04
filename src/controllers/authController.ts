@@ -2,7 +2,7 @@ import { Request, Response } from 'express'
 import { jwtService } from '../services/jwtService'
 import { userService } from '../services/userService'
 
-const authController = {
+export const authController = {
   // POST /auth/register
   register: async (req: Request, res: Response) => {
     const { firstName, lastName, phone, birth, email, password } = req.body
@@ -69,5 +69,3 @@ const authController = {
     }
   }
 }
-
-export { authController }

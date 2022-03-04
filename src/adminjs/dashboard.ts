@@ -1,7 +1,7 @@
 import AdminJs, { PageHandler } from 'adminjs'
 import { Category, Course, Episode, User } from '../models'
 
-const dashboardOptions: {
+export const dashboardOptions: {
   handler?: PageHandler
   component?: string
 } = {
@@ -20,5 +20,3 @@ const dashboardOptions: {
     })
   },
 }
-
-export { dashboardOptions }

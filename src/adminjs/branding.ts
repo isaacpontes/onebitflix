@@ -1,6 +1,6 @@
 import { BrandingOptions } from 'adminjs'
 
-const brandingOptions: BrandingOptions = {
+export const brandingOptions: BrandingOptions = {
   companyName: 'OneBitFlix',
   logo: '/onebitflix.svg',
   theme: {
@@ -21,5 +21,3 @@ const brandingOptions: BrandingOptions = {
     }
   }
 }
-
-export { brandingOptions }

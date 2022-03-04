@@ -2,7 +2,7 @@ import { Response } from 'express'
 import { RequestWithUser } from '../middlewares/auth'
 import { likeService } from '../services/likeService'
 
-const likesController = {
+export const likesController = {
   // POST /likes
   save: async (req: RequestWithUser, res: Response) => {
     const userId = req.user!.id
@@ -33,5 +33,3 @@ const likesController = {
     }
   }
 }
-
-export { likesController }

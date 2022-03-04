@@ -27,7 +27,7 @@ function filterLastEpisodeFromEachCourse(episodes: EpisodeInstance[]) {
   return lastEpisodes
 }
 
-const userService = {
+export const userService = {
   findByEmail: async (email: string) => {
     const user = await User.findOne({
       attributes: [
@@ -112,5 +112,3 @@ const userService = {
     return keepWatchingList
   }
 }
-
-export { userService }

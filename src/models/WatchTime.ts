@@ -1,15 +1,15 @@
 import { database } from '../database'
 import { DataTypes, Model } from 'sequelize'
 
-interface WatchTimeAttributes {
+export interface WatchTimeAttributes {
   seconds: number
   userId: number
   episodeId: number
 }
 
-interface WatchTimeInstance extends Model<WatchTimeAttributes>, WatchTimeAttributes { }
+export interface WatchTimeInstance extends Model<WatchTimeAttributes>, WatchTimeAttributes { }
 
-const WatchTime = database.define<WatchTimeInstance, WatchTimeAttributes>('watch_times', {
+export const WatchTime = database.define<WatchTimeInstance, WatchTimeAttributes>('watch_times', {
   seconds: {
     allowNull: false,
     type: DataTypes.INTEGER
@@ -29,5 +29,3 @@ const WatchTime = database.define<WatchTimeInstance, WatchTimeAttributes>('watch
     onDelete: 'CASCADE'
   }
 })
-
-export { WatchTime, WatchTimeInstance }

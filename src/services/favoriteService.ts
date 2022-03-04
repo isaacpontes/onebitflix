@@ -1,6 +1,6 @@
 import { Favorite } from "../models"
 
-const favoriteService = {
+export const favoriteService = {
   findByUserId: async (userId: string | number) => {
     const favorites = await Favorite.findAll({
       attributes: [['user_id', 'userId']],
@@ -55,5 +55,3 @@ const favoriteService = {
     })
   }
 }
-
-export { favoriteService }

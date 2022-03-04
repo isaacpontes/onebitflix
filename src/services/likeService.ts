@@ -1,6 +1,6 @@
 import { Like } from "../models"
 
-const likeService = {
+export const likeService = {
   create: async (userId: number, courseId: number) => {
     const likeAlreadyExists = await Like.findOne({
       where: {
@@ -41,5 +41,3 @@ const likeService = {
     return like ? true : false
   }
 }
-
-export { likeService }

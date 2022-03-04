@@ -1,6 +1,6 @@
 import { WatchTime } from "../models"
 
-const episodeService = {
+export const episodeService = {
   getWatchTime: async (userId: string | number, episodeId: string | number) => {
     const watchTime = await WatchTime.findOne({
       attributes: ['seconds'],
@@ -35,5 +35,3 @@ const episodeService = {
     }
   }
 }
-
-export { episodeService }

@@ -5,7 +5,7 @@ import { courseResourceFeatures, courseResourceOptions } from './resources/cours
 import { episodeResourceFeatures, episodeResourceOptions } from './resources/episode'
 import { userResourceOptions } from './resources/user'
 
-const adminJsResources: ResourceWithOptions[] = [
+export const adminJsResources: ResourceWithOptions[] = [
   {
     resource: Course,
     options: courseResourceOptions,
@@ -25,5 +25,3 @@ const adminJsResources: ResourceWithOptions[] = [
     options: userResourceOptions
   }
 ]
-
-export { adminJsResources }

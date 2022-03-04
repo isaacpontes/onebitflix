@@ -2,7 +2,7 @@ import { Response } from 'express'
 import { RequestWithUser } from '../middlewares/auth'
 import { favoriteService } from '../services/favoriteService'
 
-const favoritesController = {
+export const favoritesController = {
   // GET /favorites
   index: async (req: RequestWithUser, res: Response) => {
     const userId = req.user!.id
@@ -47,5 +47,3 @@ const favoritesController = {
     }
   }
 }
-
-export { favoritesController }

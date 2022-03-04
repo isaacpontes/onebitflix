@@ -1,4 +1,4 @@
-function getPaginationParams(query: any): [page: number, perPage: number] {
+export function getPaginationParams(query: any): [page: number, perPage: number] {
   const { page, perPage } = query
 
   const perPageNumber = typeof perPage === 'string' && parseInt(perPage, 10) > 0
@@ -11,5 +11,3 @@ function getPaginationParams(query: any): [page: number, perPage: number] {
 
   return [pageNumber, perPageNumber]
 }
-
-export { getPaginationParams }

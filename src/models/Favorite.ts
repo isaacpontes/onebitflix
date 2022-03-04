@@ -2,16 +2,16 @@ import { database } from '../database'
 import { DataTypes, Model } from 'sequelize'
 import { CourseInstance } from './Course'
 
-interface FavoriteAttributes {
+export interface FavoriteAttributes {
   userId: number
   courseId: number
 }
 
-interface FavoriteInstance extends Model<FavoriteAttributes>, FavoriteAttributes {
+export interface FavoriteInstance extends Model<FavoriteAttributes>, FavoriteAttributes {
   course?: CourseInstance
 }
 
-const Favorite = database.define<FavoriteInstance, FavoriteAttributes>('favorites', {
+export const Favorite = database.define<FavoriteInstance, FavoriteAttributes>('favorites', {
   userId: {
     allowNull: false,
     type: DataTypes.INTEGER,
@@ -27,5 +27,3 @@ const Favorite = database.define<FavoriteInstance, FavoriteAttributes>('favorite
     onDelete: 'CASCADE'
   }
 })
-
-export { Favorite }

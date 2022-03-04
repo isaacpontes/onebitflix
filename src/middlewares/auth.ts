@@ -4,11 +4,11 @@ import { UserInstance } from '../models/User'
 import { jwtService } from '../services/jwtService'
 import { userService } from '../services/userService'
 
-interface RequestWithUser extends Request {
+export interface RequestWithUser extends Request {
   user?: UserInstance | null
 }
 
-function ensureAuth(req: RequestWithUser, res: Response, next: NextFunction) {
+export function ensureAuth(req: RequestWithUser, res: Response, next: NextFunction) {
   const authorizationHeader = req.headers.authorization
 
   if (!authorizationHeader) {
@@ -29,7 +29,7 @@ function ensureAuth(req: RequestWithUser, res: Response, next: NextFunction) {
   })
 }
 
-function ensureAuthViaQuery(req: RequestWithUser, res: Response, next: NextFunction) {
+export function ensureAuthViaQuery(req: RequestWithUser, res: Response, next: NextFunction) {
   const { token } = req.query
 
   if (!token) {
@@ -51,5 +51,3 @@ function ensureAuthViaQuery(req: RequestWithUser, res: Response, next: NextFunct
     })
   })
 }
-
-export { ensureAuth, ensureAuthViaQuery, RequestWithUser }

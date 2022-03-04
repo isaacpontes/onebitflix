@@ -3,7 +3,7 @@ import fs from 'fs'
 import path from 'path'
 import { episodeService } from '../services/episodeService'
 
-const episodesController = {
+export const episodesController = {
   // GET /episodes/stream
   stream: async (req: Request, res: Response) => {
     const { videoUrl } = req.query
@@ -92,5 +92,3 @@ const episodesController = {
     }
   }
 }
-
-export { episodesController }

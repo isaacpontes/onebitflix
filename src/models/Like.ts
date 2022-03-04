@@ -1,14 +1,14 @@
 import { database } from '../database'
 import { DataTypes, Model } from 'sequelize'
 
-interface LikeAttributes {
+export interface LikeAttributes {
   userId: number
   courseId: number
 }
 
-interface LikeInstance extends Model<LikeAttributes>, LikeAttributes { }
+export interface LikeInstance extends Model<LikeAttributes>, LikeAttributes { }
 
-const Like = database.define<LikeInstance, LikeAttributes>('likes', {
+export const Like = database.define<LikeInstance, LikeAttributes>('likes', {
   userId: {
     allowNull: false,
     type: DataTypes.INTEGER,
@@ -24,5 +24,3 @@ const Like = database.define<LikeInstance, LikeAttributes>('likes', {
     onDelete: 'CASCADE'
   }
 })
-
-export { Like }

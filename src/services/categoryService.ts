@@ -1,6 +1,6 @@
 import { Category } from '../models'
 
-const categoryService = {
+export const categoryService = {
   findAllPaginated: async (page: number, perPage: number) => {
     const offset = (page - 1) * perPage
 
@@ -31,5 +31,3 @@ const categoryService = {
     return categoryWithCourses
   }
 }
-
-export { categoryService }

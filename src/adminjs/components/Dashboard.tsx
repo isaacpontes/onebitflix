@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { H1, H2, Table, TableHead, TableBody, TableRow, TableCell } from '@adminjs/design-system'
 import { ApiClient, useCurrentAdmin } from 'adminjs'
 
-function Dashboard() {
+export default function Dashboard() {
   const [currentAdmin] = useCurrentAdmin()
   const [resources, setResources] = useState<{ [key: string]: number }>()
   const api = new ApiClient()
@@ -49,5 +49,3 @@ function Dashboard() {
     </section>
   )
 }
-
-export default Dashboard

@@ -3,7 +3,7 @@ import { DataTypes, Model, Optional } from 'sequelize'
 import { WatchTimeInstance } from './WatchTime'
 import { CourseInstance } from './Course'
 
-interface EpisodeAttributes {
+export interface EpisodeAttributes {
   id: number
   name: string
   synopsis: string
@@ -13,15 +13,14 @@ interface EpisodeAttributes {
   courseId: number
 }
 
-interface EpisodeCreationAttributes
-  extends Optional<EpisodeAttributes, 'id' | 'videoUrl' | 'secondsLong' > {}
+export interface EpisodeCreationAttributes extends Optional<EpisodeAttributes, 'id' | 'videoUrl' | 'secondsLong' > {}
 
-interface EpisodeInstance extends Model<EpisodeAttributes, EpisodeCreationAttributes>, EpisodeAttributes {
+export interface EpisodeInstance extends Model<EpisodeAttributes, EpisodeCreationAttributes>, EpisodeAttributes {
   course?: CourseInstance
   watchTime?: WatchTimeInstance
 }
 
-const Episode = database.define<EpisodeInstance, EpisodeAttributes>('episodes', {
+export const Episode = database.define<EpisodeInstance, EpisodeAttributes>('episodes', {
   id: {
     allowNull: false,
     autoIncrement: true,
@@ -55,5 +54,3 @@ const Episode = database.define<EpisodeInstance, EpisodeAttributes>('episodes', 
     onDelete: 'RESTRICT'
   }
 })
-
-export { Episode, EpisodeAttributes, EpisodeInstance }

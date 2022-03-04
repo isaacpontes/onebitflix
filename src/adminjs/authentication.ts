@@ -2,7 +2,7 @@ import { AuthenticationOptions } from '@adminjs/express'
 import { User } from '../models'
 import bcrypt from 'bcrypt'
 
-const authtenticationOptions: AuthenticationOptions = {
+export const authtenticationOptions: AuthenticationOptions = {
   authenticate: async (email, password) => {
     const user = await User.findOne({ where: { email } })
 
@@ -18,5 +18,3 @@ const authtenticationOptions: AuthenticationOptions = {
   },
   cookiePassword: 'senha-do-cookie'
 }
-
-export { authtenticationOptions }

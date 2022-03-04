@@ -3,7 +3,7 @@ import { getPaginationParams } from '../helpers/getPaginationParams'
 import { courseService } from '../services/courseService'
 import { likeService } from '../services/likeService'
 
-const coursesController = {
+export const coursesController = {
   // GET /courses/:id
   show: async (req: Request, res: Response) => {
     const { id } = req.params
@@ -76,5 +76,3 @@ const coursesController = {
     }
   }
 }
-
-export { coursesController }

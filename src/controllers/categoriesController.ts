@@ -2,7 +2,7 @@ import { Request, Response } from 'express'
 import { getPaginationParams } from '../helpers/getPaginationParams'
 import { categoryService } from '../services/categoryService'
 
-const categoriesController = {
+export const categoriesController = {
   // GET /categories?page=1&perPage=10
   index: async (req: Request, res: Response) => {
     const [page, perPage] = getPaginationParams(req.query)
@@ -32,5 +32,3 @@ const categoriesController = {
     }
   }
 }
-
-export { categoriesController }

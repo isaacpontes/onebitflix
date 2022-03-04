@@ -2,7 +2,7 @@ import { Response } from 'express'
 import { RequestWithUser } from '../middlewares/auth'
 import { userService } from '../services/userService'
 
-const usersController = {
+export const usersController = {
   // GET /users/current
   show: async (req: RequestWithUser, res: Response) => {
     const currentUser = req.user
@@ -85,5 +85,3 @@ const usersController = {
     }
   }
 }
-
-export { usersController }
