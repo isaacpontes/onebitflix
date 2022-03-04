@@ -1,15 +1,15 @@
-import { Request, Response } from 'express'
+import { Response } from 'express'
+import { RequestWithUser } from '../middlewares/auth'
 import { likeService } from '../services/like-service'
 
 const likesController = {
-  // POST /profiles/:profileId/likes/:courseId
-  save: async (req: Request, res: Response) => {
-    const profileId = Number(req.params.profileId)
-    const courseId = Number(req.params.courseId)
+  // POST /likes
+  save: async (req: RequestWithUser, res: Response) => {
+    const userId = req.user!.id
+    const { courseId } = req.body
 
     try {
-      const like = await likeService.create(profileId, courseId)
-
+      const like = await likeService.create(userId, courseId)
       return res.status(201).json(like)
     } catch (err) {
       if (err instanceof Error) {
@@ -18,12 +18,13 @@ const likesController = {
     }
   },
 
-  // DELETE /profiles/:profileId/likes/:courseId
-  delete: async (req: Request, res: Response) => {
-    const { profileId, courseId } = req.params
+  // DELETE /likes
+  delete: async (req: RequestWithUser, res: Response) => {
+    const userId = req.user!.id
+    const { courseId } = req.body
 
     try {
-      await likeService.delete(profileId, courseId)
+      await likeService.delete(userId, courseId)
       return res.status(204).send()
     } catch (err) {
       if (err instanceof Error) {

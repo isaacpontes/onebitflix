@@ -3,7 +3,7 @@ import { DataTypes, Model } from 'sequelize'
 import { CourseInstance } from './course'
 
 interface FavoriteAttributes {
-  profileId: number
+  userId: number
   courseId: number
 }
 
@@ -12,10 +12,10 @@ interface FavoriteInstance extends Model<FavoriteAttributes>, FavoriteAttributes
 }
 
 const Favorite = database.define<FavoriteInstance, FavoriteAttributes>('favorites', {
-  profileId: {
+  userId: {
     allowNull: false,
     type: DataTypes.INTEGER,
-    references: { model: 'profiles', key: 'id' },
+    references: { model: 'users', key: 'id' },
     onUpdate: 'CASCADE',
     onDelete: 'CASCADE'
   },

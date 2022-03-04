@@ -33,7 +33,7 @@ const courseService = {
 
     const randomFeaturedCourses = featuredCourses.sort(() => 0.5 - Math.random())
 
-    return randomFeaturedCourses.slice(0, 4)
+    return randomFeaturedCourses.slice(0, 3)
   },
 
   getTopTenByLikes: async () => {
@@ -43,12 +43,12 @@ const courseService = {
         courses.name,
         courses.synopsis,
         courses.thumbnail_url as thumbnailUrl,
-        COUNT(profiles.id) AS likes
+        COUNT(users.id) AS likes
       FROM courses
         LEFT OUTER JOIN likes
           ON courses.id = likes.course_id
-          INNER JOIN profiles
-            ON profiles.id = likes.profile_id
+          INNER JOIN users
+            ON users.id = likes.user_id
       GROUP BY courses.id
       ORDER BY likes DESC
       LIMIT 10;`

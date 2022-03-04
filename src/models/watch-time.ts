@@ -3,7 +3,7 @@ import { DataTypes, Model } from 'sequelize'
 
 interface WatchTimeAttributes {
   seconds: number
-  profileId: number
+  userId: number
   episodeId: number
 }
 
@@ -14,10 +14,10 @@ const WatchTime = database.define<WatchTimeInstance, WatchTimeAttributes>('watch
     allowNull: false,
     type: DataTypes.INTEGER
   },
-  profileId: {
+  userId: {
     allowNull: false,
     type: DataTypes.INTEGER,
-    references: { model: 'profiles', key: 'id' },
+    references: { model: 'users', key: 'id' },
     onUpdate: 'CASCADE',
     onDelete: 'CASCADE'
   },

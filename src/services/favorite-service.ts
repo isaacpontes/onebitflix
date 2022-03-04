@@ -1,10 +1,10 @@
-import { Favorite } from "../models/favorite"
+import { Favorite } from "../models"
 
 const favoriteService = {
-  findByProfileId: async (profileId: string) => {
+  findByUserId: async (userId: string | number) => {
     const favorites = await Favorite.findAll({
-      attributes: [['profile_id', 'profileId']],
-      where: { profileId },
+      attributes: [['user_id', 'userId']],
+      where: { userId },
       include: {
         association: 'course',
         attributes: [
@@ -21,15 +21,15 @@ const favoriteService = {
     const courses = favorites.map(favorite => favorite.course)
 
     return {
-      profileId,
+      userId,
       courses
     }
   },
 
-  create: async (profileId: number, courseId: number) => {
+  create: async (userId: number, courseId: number) => {
     const favoriteAlreadyExists = await Favorite.findOne({
       where: {
-        profileId,
+        userId,
         courseId
       }
     })
@@ -39,17 +39,17 @@ const favoriteService = {
     }
 
     const favorite = await Favorite.create({
-      profileId,
+      userId,
       courseId
     })
 
     return favorite
   },
 
-  delete: async (profileId: string, courseId: string) => {
+  delete: async (userId: string | number, courseId: string | number) => {
     await Favorite.destroy({
       where: {
-        profileId,
+        userId,
         courseId
       }
     })

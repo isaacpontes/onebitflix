@@ -65,10 +65,10 @@ const episodesController = {
   // GET /episodes/:id/watch_time
   getWatchTime: async (req: Request, res: Response) => {
     const episodeId = Number(req.params.id)
-    const { profileId } = req.body
+    const { userId } = req.body
 
     try {
-      const watchTime = await episodeService.getWatchTime(profileId, episodeId)
+      const watchTime = await episodeService.getWatchTime(userId, episodeId)
       return res.json(watchTime)
     } catch (err) {
       if (err instanceof Error) {
@@ -80,10 +80,10 @@ const episodesController = {
   // POST /episodes/:id/watch_time
   setWatchTime: async (req: Request, res: Response) => {
     const episodeId = Number(req.params.id)
-    const { profileId, seconds } = req.body
+    const { userId, seconds } = req.body
 
     try {
-      const watchTime = await episodeService.setWatchTime(profileId, episodeId, seconds)
+      const watchTime = await episodeService.setWatchTime(userId, episodeId, seconds)
       return res.json(watchTime)
     } catch (err) {
       if (err instanceof Error) {

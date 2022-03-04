@@ -7,13 +7,13 @@ const coursesController = {
   // GET /courses/:id
   show: async (req: Request, res: Response) => {
     const { id } = req.params
-    const { profileId } = req.body
+    const { userId } = req.body
 
     try {
       const course = await courseService.findByIdWithEpisodes(id)
 
       if (course) {
-        const liked = await likeService.isLiked(course.id, profileId)
+        const liked = await likeService.isLiked(course.id, userId)
         return res.json({ ...course.get(), liked })
       } else {
         return res.status(404).json({ message: 'Curso não encontrado' })

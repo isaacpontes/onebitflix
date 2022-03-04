@@ -2,17 +2,17 @@ import { database } from '../database'
 import { DataTypes, Model } from 'sequelize'
 
 interface LikeAttributes {
-  profileId: number
+  userId: number
   courseId: number
 }
 
 interface LikeInstance extends Model<LikeAttributes>, LikeAttributes { }
 
 const Like = database.define<LikeInstance, LikeAttributes>('likes', {
-  profileId: {
+  userId: {
     allowNull: false,
     type: DataTypes.INTEGER,
-    references: { model: 'profiles', key: 'id' },
+    references: { model: 'users', key: 'id' },
     onUpdate: 'CASCADE',
     onDelete: 'CASCADE'
   },

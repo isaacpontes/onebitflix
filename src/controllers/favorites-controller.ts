@@ -1,13 +1,14 @@
-import { Request, Response } from 'express'
+import { Response } from 'express'
+import { RequestWithUser } from '../middlewares/auth'
 import { favoriteService } from '../services/favorite-service'
 
 const favoritesController = {
-  //GET /profiles/:profileId/favorites
-  index: async (req: Request, res: Response) => {
-    const { profileId } = req.params
+  // GET /favorites
+  index: async (req: RequestWithUser, res: Response) => {
+    const userId = req.user!.id
 
     try {
-      const favorites = await favoriteService.findByProfileId(profileId)
+      const favorites = await favoriteService.findByUserId(userId)
       return res.json(favorites)
     } catch (err) {
       if (err instanceof Error) {
@@ -16,14 +17,13 @@ const favoritesController = {
     }
   },
 
-  // POST /profiles/:profileId/favorites/:courseId
-  save: async (req: Request, res: Response) => {
-    const profileId = Number(req.params.profileId)
-    const courseId = Number(req.params.courseId)
+  // POST /favorites
+  save: async (req: RequestWithUser, res: Response) => {
+    const userId = req.user!.id
+    const { courseId } = req.body.courseId
 
     try {
-      const favorite = await favoriteService.create(profileId, courseId)
-
+      const favorite = await favoriteService.create(userId, courseId)
       return res.status(201).json(favorite)
     } catch (err) {
       if (err instanceof Error) {
@@ -32,12 +32,13 @@ const favoritesController = {
     }
   },
 
-  // DELETE /profiles/:profileId/favorites/:courseId
-  delete: async (req: Request, res: Response) => {
-    const { profileId, courseId } = req.params
-
+  // DELETE /favorites
+  delete: async (req: RequestWithUser, res: Response) => {
+    const userId = req.user!.id
+    const { courseId } = req.body.courseId
+    
     try {
-      await favoriteService.delete(profileId, courseId)
+      await favoriteService.delete(userId, courseId)
       return res.status(204).send()
     } catch (err) {
       if (err instanceof Error) {

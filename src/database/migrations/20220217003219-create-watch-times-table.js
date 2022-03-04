@@ -7,10 +7,10 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DataTypes.INTEGER
       },
-      profile_id: {
+      user_id: {
         allowNull: false,
         type: Sequelize.DataTypes.INTEGER,
-        references: { model: 'profiles', key: 'id' },
+        references: { model: 'users', key: 'id' },
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE'
       },

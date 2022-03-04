@@ -1,40 +1,40 @@
 import { Like } from "../models/like"
 
 const likeService = {
-  create: async (profileId: number, courseId: number) => {
+  create: async (userId: number, courseId: number) => {
     const likeAlreadyExists = await Like.findOne({
       where: {
-        profileId,
+        userId,
         courseId
       }
     })
 
     if (likeAlreadyExists) {
-      throw new Error('Este perfil já gostou deste curso')
+      throw new Error('Este usuário já gostou deste curso')
     }
 
     const like = await Like.create({
-      profileId,
+      userId,
       courseId
     })
 
     return like
   },
 
-  delete: async (profileId: string, courseId: string) => {
+  delete: async (userId: string | number, courseId: string | number) => {
     await Like.destroy({
       where: {
-        profileId,
+        userId,
         courseId
       }
     })
   },
 
-  isLiked: async (courseId: string | number, profileId: string | number) => {
+  isLiked: async (courseId: string | number, userId: string | number) => {
     const like = await Like.findOne({
       where: {
         courseId,
-        profileId
+        userId
       }
     })
 

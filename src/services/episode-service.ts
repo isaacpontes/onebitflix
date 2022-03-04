@@ -1,11 +1,11 @@
 import { WatchTime } from "../models"
 
 const episodeService = {
-  getWatchTime: async (profileId: string | number, episodeId: string | number) => {
+  getWatchTime: async (userId: string | number, episodeId: string | number) => {
     const watchTime = await WatchTime.findOne({
       attributes: ['seconds'],
       where: {
-        profileId,
+        userId,
         episodeId
       }
     })
@@ -13,10 +13,10 @@ const episodeService = {
     return watchTime
   },
 
-  setWatchTime: async (profileId: number, episodeId: number, seconds: number) => {
+  setWatchTime: async (userId: number, episodeId: number, seconds: number) => {
     const watchTimeAlreadyExists = await WatchTime.findOne({
       where: {
-        profileId,
+        userId,
         episodeId
       }
     })
@@ -27,7 +27,7 @@ const episodeService = {
       return watchTimeAlreadyExists
     } else {
       const newWatchTime = await WatchTime.create({
-        profileId,
+        userId,
         episodeId,
         seconds
       })
