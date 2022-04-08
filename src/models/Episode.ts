@@ -37,7 +37,6 @@ export const Episode = database.define<EpisodeInstance, EpisodeAttributes>('epis
   },
   order: {
     allowNull: false,
-    unique: true,
     type: DataTypes.STRING
   },
   videoUrl: {

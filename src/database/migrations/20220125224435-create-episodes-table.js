@@ -19,7 +19,6 @@ module.exports = {
       },
       order: {
         allowNull: false,
-        unique: true,
         type: Sequelize.DataTypes.INTEGER
       },
       video_url: {
