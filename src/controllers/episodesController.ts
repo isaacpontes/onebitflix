@@ -1,4 +1,5 @@
 import { Request, Response } from 'express'
+import { RequestWithUser } from '../middlewares/auth'
 import { episodeService } from '../services/episodeService'
 
 export const episodesController = {
@@ -20,10 +21,10 @@ export const episodesController = {
     }
   },
 
-  // GET /episodes/:id/watch_time
-  getWatchTime: async (req: Request, res: Response) => {
+  // GET /episodes/:id/watchTime
+  getWatchTime: async (req: RequestWithUser, res: Response) => {
     const episodeId = Number(req.params.id)
-    const { userId } = req.body
+    const userId = req.user!.id
 
     try {
       const watchTime = await episodeService.getWatchTime(userId, episodeId)
@@ -35,10 +36,11 @@ export const episodesController = {
     }
   },
 
-  // POST /episodes/:id/watch_time
-  setWatchTime: async (req: Request, res: Response) => {
+  // POST /episodes/:id/watchTime
+  setWatchTime: async (req: RequestWithUser, res: Response) => {
     const episodeId = Number(req.params.id)
-    const { userId, seconds } = req.body
+    const userId = req.user!.id
+    const { seconds } = req.body
 
     try {
       const watchTime = await episodeService.setWatchTime(userId, episodeId, seconds)

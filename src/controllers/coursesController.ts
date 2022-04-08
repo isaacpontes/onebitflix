@@ -1,13 +1,14 @@
 import { Request, Response } from 'express'
 import { getPaginationParams } from '../helpers/getPaginationParams'
+import { RequestWithUser } from '../middlewares/auth'
 import { courseService } from '../services/courseService'
 import { likeService } from '../services/likeService'
 
 export const coursesController = {
   // GET /courses/:id
-  show: async (req: Request, res: Response) => {
+  show: async (req: RequestWithUser, res: Response) => {
     const { id } = req.params
-    const { userId } = req.body
+    const userId = req.user!.id
 
     try {
       const course = await courseService.findByIdWithEpisodes(id)
