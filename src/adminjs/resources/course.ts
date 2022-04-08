@@ -3,7 +3,10 @@ import uploadFileFeature from '@adminjs/upload'
 import path from 'path'
 
 export const courseResourceOptions: ResourceOptions = {
-  navigation: 'Catálogo',
+  navigation: {
+    name: 'Catálogo',
+    icon: 'Categories'
+  },
   editProperties: ['name', 'synopsis', 'uploadThumbnail', 'featured', 'categoryId'],
   filterProperties: ['name', 'synopsis', 'featured', 'categoryId', 'createdAt', 'updatedAt'],
   listProperties: ['id', 'name', 'featured', 'categoryId'],

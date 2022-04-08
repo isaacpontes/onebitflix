@@ -3,7 +3,10 @@ import uploadFileFeature from '@adminjs/upload'
 import { FeatureType, ResourceOptions } from 'adminjs'
 
 export const episodeResourceOptions: ResourceOptions = {
-  navigation: 'Catálogo',
+  navigation: {
+    name: 'Catálogo',
+    icon: 'Categories'
+  },
   editProperties: ['name', 'synopsis', 'courseId', 'order', 'uploadVideo', 'secondsLong'  ],
   filterProperties: ['name', 'synopsis', 'courseId', 'secondsLong', 'createdAt', 'updatedAt'],
   listProperties: ['id', 'name', 'courseId', 'order', 'secondsLong'],

@@ -1,7 +1,10 @@
 import { ResourceOptions } from "adminjs";
 
 export const userResourceOptions: ResourceOptions = {
-  navigation: 'Administração',
+  navigation: {
+    name: 'Administração',
+    icon: 'Settings'
+  },
   properties: {
     birth: {
       type: 'date'
