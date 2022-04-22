@@ -19,4 +19,9 @@ export const adminJs = new AdminJs({
   branding: brandingOptions
 })
 
-export const adminJsRouter = AdminJsExpress.buildAuthenticatedRouter(adminJs, authtenticationOptions)
+export const adminJsRouter = AdminJsExpress.buildAuthenticatedRouter(
+  adminJs,
+  authtenticationOptions,
+  null,
+  { resave: false, saveUninitialized: false }
+)
