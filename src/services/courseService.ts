@@ -15,7 +15,8 @@ export const courseService = {
           ['video_url', 'videoUrl'],
           ['seconds_long', 'secondsLong']
         ],
-        order: [['order', 'ASC']]
+        order: [['order', 'ASC']],
+        separate: true
       }
     })
 
