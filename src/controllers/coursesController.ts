@@ -2,6 +2,7 @@ import { Request, Response } from 'express'
 import { getPaginationParams } from '../helpers/getPaginationParams'
 import { RequestWithUser } from '../middlewares/auth'
 import { courseService } from '../services/courseService'
+import { favoriteService } from '../services/favoriteService'
 import { likeService } from '../services/likeService'
 
 export const coursesController = {
@@ -15,7 +16,8 @@ export const coursesController = {
 
       if (course) {
         const liked = await likeService.isLiked(course.id, userId)
-        return res.json({ ...course.get(), liked })
+        const favorited = await favoriteService.isFavorited(course.id, userId)
+        return res.json({ ...course.get(), favorited, liked })
       } else {
         return res.status(404).json({ message: 'Curso não encontrado' })
       }
