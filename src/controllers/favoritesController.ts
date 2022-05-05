@@ -20,7 +20,7 @@ export const favoritesController = {
   // POST /favorites
   save: async (req: RequestWithUser, res: Response) => {
     const userId = req.user!.id
-    const { courseId } = req.body.courseId
+    const { courseId } = req.body
 
     try {
       const favorite = await favoriteService.create(userId, courseId)
@@ -35,8 +35,8 @@ export const favoritesController = {
   // DELETE /favorites
   delete: async (req: RequestWithUser, res: Response) => {
     const userId = req.user!.id
-    const { courseId } = req.body.courseId
-    
+    const { courseId } = req.body
+
     try {
       await favoriteService.delete(userId, courseId)
       return res.status(204).send()
